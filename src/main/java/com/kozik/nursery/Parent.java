@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "parent")
+@Table(name = "parents")
 public class Parent {
     
     @Id

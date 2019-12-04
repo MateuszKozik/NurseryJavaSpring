@@ -66,6 +66,8 @@ public class NurseryApplication implements CommandLineRunner{
         //test parent entity
         User user4 = new User("user4", "test", "test@test.com");
         User user5 = new User("user5", "test", "test@test.com");
+        userRepository.save(user4);
+        userRepository.save(user5);
         
         Parent parent1 = new Parent("Dominic", "Ross", "123456789", user4);
         Parent parent2 = new Parent("Sofia", "Spencer", "123456789", user5);
