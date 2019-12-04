@@ -19,6 +19,8 @@ public class NurseryApplication implements CommandLineRunner{
     private EmployeeRepository employeeRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private ParentRepository parentRepository;
     
     @Override
     public void run(String... args)  {
@@ -53,11 +55,25 @@ public class NurseryApplication implements CommandLineRunner{
         }   
         
         //test address entity
-        addressRepository.save(new Address(14, "43-433", "Cracow"));
-        addressRepository.save(new Address(64, "56-342", "Warsaw"));
+        Address address1 = new Address(14, "43-433", "Cracow");
+        Address address2 = new Address(64, "56-342", "Warsaw");
+        addressRepository.save(address1);
+        addressRepository.save(address2);
         for(Address address: addressRepository.findAll()){
             System.out.println(address);
         }
+        
+        //test parent entity
+        User user4 = new User("user4", "test", "test@test.com");
+        User user5 = new User("user5", "test", "test@test.com");
+        
+        Parent parent1 = new Parent("Dominic", "Ross", "123456789", user4);
+        Parent parent2 = new Parent("Sofia", "Spencer", "123456789", user5);
+        
+        parent1.setAddress(address1);
+        parent2.setAddress(address2);
+        parentRepository.save(parent1);
+        parentRepository.save(parent2);
     }
 
 }

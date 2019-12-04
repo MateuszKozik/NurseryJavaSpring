@@ -35,8 +35,10 @@ public class Address {
     private String city;
     
     @OneToMany(mappedBy = "address")
-    private Set<Employee> employee = new HashSet<Employee>();
+    private Set<Employee> employees = new HashSet<Employee>();
     
+    @OneToMany(mappedBy = "address")
+    private Set<Parent> parents = new HashSet<Parent>();
     protected Address(){}
 
     public Address(Integer houseNumber, String postcode, String city) {
@@ -93,15 +95,22 @@ public class Address {
         this.city = city;
     }
 
-    public Set<Employee> getEmployee() {
-        return employee;
+    public Set<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(Set<Employee> employee) {
-        this.employee = employee;
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
-    
+    public Set<Parent> getParents() {
+        return parents;
+    }
+
+    public void setParents(Set<Parent> parents) {
+        this.parents = parents;
+    }
+
     @Override
     public String toString() {
         return "Address{" + "addressID=" + addressID + ", street=" + street + ", houseNumber=" + houseNumber + ", flatNumber=" + flatNumber + ", postcode=" + postcode + ", city=" + city + '}';

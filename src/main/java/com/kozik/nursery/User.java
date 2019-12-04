@@ -36,6 +36,9 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Employee employee;
     
+    @OneToOne(mappedBy = "user")
+    private Parent parent;
+    
     protected User(){}
     
        public User(String userName, String password, String email) {
@@ -107,7 +110,15 @@ public class User {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
+      
     @Override
     public String toString() {
         return "User{" + "userID=" + userID + ", userName=" + userName + ", password=" + password + ", email=" + email + ", roles=" + roles + ", enabled=" + enabled.toString() + '}';
