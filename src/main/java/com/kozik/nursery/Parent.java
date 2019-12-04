@@ -17,24 +17,24 @@ public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "parentID", nullable = false)
-    Integer parentID;
+    private Integer parentID;
     
     @Column(name = "name", nullable = false, length = 25)
-    String name;
+    private String name;
     
     @Column(name = "surname", nullable = false, length = 25)
-    String surname;
+    private String surname;
     
     @Column(name = "phone_number", nullable = false, length = 9)
-    String phoneNumber;
+    private String phoneNumber;
     
     @OneToOne
     @JoinColumn(name = "userID", nullable = false, unique = true)
-    User user;
+    private User user;
     
     @ManyToOne
     @JoinColumn(name = "addressID", nullable = true)
-    Address address;
+    private Address address;
     
     protected Parent(){}
 
