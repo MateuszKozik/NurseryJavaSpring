@@ -142,7 +142,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "emplyeeID=" + emplyeeID + ", name=" + name + ", surname=" + surname + ", emplymentDate=" + emplymentDate.toString() + ", phoneNumber=" + phoneNumber + ", position=" + position + ", baseSalary=" + baseSalary + ", extraPay=" + extraPay + ", supervisor=" + supervisor + " }";
+        return "Employee{" + "emplyeeID=" + emplyeeID + ", name=" + name + ", surname=" + surname + ", emplymentDate=" + emplymentDate.toString() + ", phoneNumber=" + phoneNumber + ", position=" + position + ", baseSalary=" + baseSalary + ", extraPay=" + extraPay+"}";
     }
     
     
