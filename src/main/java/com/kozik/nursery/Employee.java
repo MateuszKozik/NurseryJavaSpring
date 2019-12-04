@@ -57,11 +57,12 @@ public class Employee {
     
     protected Employee(){}
 
-    public Employee(String name, String surname, LocalDate emplymentDate, String phoneNumber) {
+    public Employee(String name, String surname, LocalDate emplymentDate, String phoneNumber, User user) {
         this.name = name;
         this.surname = surname;
         this.emplymentDate = emplymentDate;
         this.phoneNumber = phoneNumber;
+        this.user = user;
     }
     
     
