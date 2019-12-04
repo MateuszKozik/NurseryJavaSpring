@@ -1,10 +1,13 @@
 package com.kozik.nursery;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +33,9 @@ public class Address {
     
     @Column(name = "city", nullable = false, length = 35)
     private String city;
+    
+    @OneToMany(mappedBy = "address")
+    private Set<Employee> employee = new HashSet<Employee>();
     
     protected Address(){}
 
@@ -87,6 +93,15 @@ public class Address {
         this.city = city;
     }
 
+    public Set<Employee> getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Set<Employee> employee) {
+        this.employee = employee;
+    }
+
+    
     @Override
     public String toString() {
         return "Address{" + "addressID=" + addressID + ", street=" + street + ", houseNumber=" + houseNumber + ", flatNumber=" + flatNumber + ", postcode=" + postcode + ", city=" + city + '}';

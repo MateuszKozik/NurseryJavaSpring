@@ -55,6 +55,10 @@ public class Employee {
     @JoinColumn(name = "userID", nullable = false, unique = true)
     private User user;          
     
+    @ManyToOne
+    @JoinColumn(name = "addressID", nullable = true)
+    private Address address;
+    
     protected Employee(){}
 
     public Employee(String name, String surname, LocalDate emplymentDate, String phoneNumber, User user) {
@@ -154,6 +158,15 @@ public class Employee {
         this.user = user;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    
     @Override
     public String toString() {
         return "Employee{" + "emplyeeID=" + emplyeeID + ", name=" + name + ", surname=" + surname + ", emplymentDate=" + emplymentDate.toString() + ", phoneNumber=" + phoneNumber + ", position=" + position + ", baseSalary=" + baseSalary + ", extraPay=" + extraPay+"}";
