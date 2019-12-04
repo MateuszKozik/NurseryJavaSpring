@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +33,9 @@ public class User {
     @Column(name = "enabled", nullable = false)
     private Boolean enabled = true; 
 
+    @OneToOne(mappedBy = "user")
+    private Employee employee;
+    
     protected User(){}
     
        public User(String userName, String password, String email) {
@@ -94,6 +98,14 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
     
     @Override

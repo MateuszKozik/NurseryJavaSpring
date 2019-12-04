@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity()
@@ -47,9 +48,13 @@ public class Employee {
     @JoinColumn(name = "supervisor", nullable = true)
     private Employee supervisor;
     
-    @OneToMany 
+    @OneToMany(mappedBy = "supervisor")
     private Set<Employee> subordinates = new HashSet<Employee>();
-
+    
+    @OneToOne
+    @JoinColumn(name = "userID", nullable = false, unique = true)
+    private User user;          
+    
     protected Employee(){}
 
     public Employee(String name, String surname, LocalDate emplymentDate, String phoneNumber) {
@@ -138,6 +143,14 @@ public class Employee {
 
     public void setSubordinates(Set<Employee> subordinates) {
         this.subordinates = subordinates;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
