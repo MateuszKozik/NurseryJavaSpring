@@ -119,6 +119,17 @@ public class NurseryApplication implements CommandLineRunner{
        
        groupRepository.save(group1);
        groupRepository.save(group2);
+       
+       Set<Group> group = new HashSet<Group>();
+       group.add(group1);
+       
+       employee1.setGroups(group);
+       employeeRepository.save(employee1);
+       
+       group.clear();
+       group.add(group2);
+       employee2.setGroups(group);
+       employeeRepository.save(employee2);
     }
 
 }

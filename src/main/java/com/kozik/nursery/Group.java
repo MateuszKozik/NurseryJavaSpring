@@ -1,11 +1,14 @@
 
 package com.kozik.nursery;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +23,9 @@ public class Group {
     @Column(name = "group_description", nullable = false, length = 60)
     private String groupDescription;
     
+    @ManyToMany(mappedBy = "groups")
+    private Set<Employee> employees = new HashSet<Employee>();
+            
     protected Group(){}
 
     public Group(String groupDescription) {
@@ -40,6 +46,14 @@ public class Group {
 
     public void setGroupDescription(String groupDescription) {
         this.groupDescription = groupDescription;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override

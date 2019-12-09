@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -58,6 +60,13 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "addressID", nullable = true)
     private Address address;
+    
+    @ManyToMany
+    @JoinTable(
+            name = "employees_groups",
+            joinColumns = @JoinColumn(name = "employeeID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "groupID", nullable = false))
+    private Set<Group> groups = new HashSet<Group>();
     
     protected Employee(){}
 
@@ -166,7 +175,14 @@ public class Employee {
         this.address = address;
     }
 
-    
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
+    }
+
     @Override
     public String toString() {
         return "Employee{" + "emplyeeID=" + emplyeeID + ", name=" + name + ", surname=" + surname + ", emplymentDate=" + emplymentDate.toString() + ", phoneNumber=" + phoneNumber + ", position=" + position + ", baseSalary=" + baseSalary + ", extraPay=" + extraPay+"}";
