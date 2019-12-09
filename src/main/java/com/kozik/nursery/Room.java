@@ -25,6 +25,9 @@ public class Room {
     @ManyToMany(mappedBy = "rooms")
     private Set<Group> groups = new HashSet<Group>();
     
+    @ManyToMany(mappedBy = "rooms")
+    private Set<Employee> employees = new HashSet<Employee>();
+    
     protected Room(){}
 
     public Room(String roomDescription) {
@@ -53,6 +56,14 @@ public class Room {
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override

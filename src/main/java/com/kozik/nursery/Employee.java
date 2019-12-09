@@ -68,6 +68,13 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "groupID", nullable = false))
     private Set<Group> groups = new HashSet<Group>();
     
+    @ManyToMany
+    @JoinTable(
+            name = "employees_rooms",
+            joinColumns = @JoinColumn(name = "employeeID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "roomID", nullable = false))
+    private Set<Room> rooms = new HashSet<Room>();
+    
     protected Employee(){}
 
     public Employee(String name, String surname, LocalDate emplymentDate, String phoneNumber, User user) {
@@ -181,6 +188,14 @@ public class Employee {
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
+    }
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
     }
 
     @Override
