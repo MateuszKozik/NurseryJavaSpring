@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +26,10 @@ public class Group {
     
     @ManyToMany(mappedBy = "groups")
     private Set<Employee> employees = new HashSet<Employee>();
-            
+      
+    @OneToMany(mappedBy = "group")
+    private Set<Record> records = new HashSet<Record>();
+    
     protected Group(){}
 
     public Group(String groupDescription) {
@@ -54,6 +58,14 @@ public class Group {
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
+    }
+
+    public Set<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(Set<Record> records) {
+        this.records = records;
     }
 
     @Override

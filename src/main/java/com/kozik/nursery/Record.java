@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +25,10 @@ public class Record {
     
     @Column(name = "months_number", nullable = false)
     private Integer monthsNumber;
+    
+    @ManyToOne
+    @JoinColumn(name = "groupID", nullable = true)
+    private Group group;
     
     protected Record(){}
 
@@ -53,6 +59,14 @@ public class Record {
 
     public void setMonthsNumber(Integer monthsNumber) {
         this.monthsNumber = monthsNumber;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     @Override
