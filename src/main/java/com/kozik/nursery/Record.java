@@ -30,13 +30,18 @@ public class Record {
     @JoinColumn(name = "groupID", nullable = true)
     private Group group;
     
+    @ManyToOne
+    @JoinColumn(name = "childID", nullable = false)
+    private Child child;
+    
     protected Record(){}
 
-    public Record(LocalDate dateOfRecord, Integer monthsNumber) {
+    public Record(LocalDate dateOfRecord, Integer monthsNumber, Child child) {
         this.dateOfRecord = dateOfRecord;
-        this.monthsNumber = monthsNumber;
+        this.monthsNumber = monthsNumber;   
+        this.child = child;
     }
-
+    
     public Integer getRecordID() {
         return recordID;
     }
@@ -67,6 +72,14 @@ public class Record {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public Child getChild() {
+        return child;
+    }
+
+    public void setChild(Child child) {
+        this.child = child;
     }
 
     @Override

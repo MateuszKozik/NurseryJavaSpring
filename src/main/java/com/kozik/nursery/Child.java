@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +32,9 @@ public class Child {
 
     @ManyToMany(mappedBy = "children")
     private Set<Parent> parents = new HashSet<Parent>();
+    
+    @OneToMany(mappedBy = "child")
+    private Set<Record> records = new HashSet<Record>();
     
     protected Child(){}
 
@@ -87,6 +91,14 @@ public class Child {
 
     public void setParents(Set<Parent> parents) {
         this.parents = parents;
+    }
+
+    public Set<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(Set<Record> records) {
+        this.records = records;
     }
 
     @Override
