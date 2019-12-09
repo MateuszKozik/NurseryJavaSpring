@@ -1,9 +1,12 @@
 
 package com.kozik.nursery;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +29,9 @@ public class Child {
     @Column(name = "requirements_description", nullable = true, length = 60)
     private String requirementsDescription;
 
+    @ManyToMany(mappedBy = "children")
+    private Set<Parent> parents = new HashSet<Parent>();
+    
     protected Child(){}
 
     public Child(String pesel, String name, String surname) {
@@ -74,6 +80,17 @@ public class Child {
     public void setRequirementsDescription(String requirementsDescription) {
         this.requirementsDescription = requirementsDescription;
     }
-    
-    
+
+    public Set<Parent> getParents() {
+        return parents;
+    }
+
+    public void setParents(Set<Parent> parents) {
+        this.parents = parents;
+    }
+
+    @Override
+    public String toString() {
+        return "Child{" + "pesel=" + pesel + ", name=" + name + ", surname=" + surname + ", specialRequirements=" + specialRequirements + ", requirementsDescription=" + requirementsDescription + '}';
+    }
 }

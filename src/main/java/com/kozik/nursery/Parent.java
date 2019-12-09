@@ -1,11 +1,15 @@
 package com.kozik.nursery;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,6 +39,13 @@ public class Parent {
     @ManyToOne
     @JoinColumn(name = "addressID", nullable = true)
     private Address address;
+    
+    @ManyToMany
+    @JoinTable(
+            name = "parent_children",
+            joinColumns = @JoinColumn(name = "parentID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "pesel", nullable = false))
+    private Set<Child> children = new HashSet<Child>();
     
     protected Parent(){}
 
@@ -91,6 +102,14 @@ public class Parent {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Set<Child> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Set<Child> children) {
+        this.children = children;
     }
 
     @Override
