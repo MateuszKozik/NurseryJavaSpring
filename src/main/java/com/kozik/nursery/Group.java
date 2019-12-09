@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,6 +31,13 @@ public class Group {
       
     @OneToMany(mappedBy = "group")
     private Set<Record> records = new HashSet<Record>();
+    
+    @ManyToMany
+    @JoinTable(
+            name = "groups_rooms",
+            joinColumns = @JoinColumn(name = "groupID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "roomID", nullable = false))
+    private Set<Room> rooms = new HashSet<Room>();
     
     protected Group(){}
 
@@ -66,6 +75,14 @@ public class Group {
 
     public void setRecords(Set<Record> records) {
         this.records = records;
+    }
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
     }
 
     @Override

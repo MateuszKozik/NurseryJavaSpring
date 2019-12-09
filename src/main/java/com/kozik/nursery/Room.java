@@ -1,10 +1,13 @@
 package com.kozik.nursery;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,9 @@ public class Room {
     @Column(name = "room_description", nullable = false, length = 60)
     private String roomDescription;
 
+    @ManyToMany(mappedBy = "rooms")
+    private Set<Group> groups = new HashSet<Group>();
+    
     protected Room(){}
 
     public Room(String roomDescription) {
@@ -39,6 +45,14 @@ public class Room {
 
     public void setRoomDescription(String roomDescription) {
         this.roomDescription = roomDescription;
+    }
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 
     @Override
