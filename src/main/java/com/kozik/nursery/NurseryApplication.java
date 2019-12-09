@@ -33,6 +33,8 @@ public class NurseryApplication implements CommandLineRunner{
     private RecordRepository recordRepository;
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private ItemRepository itemRepository;
     
     @Override
     public void run(String... args)  {
@@ -160,6 +162,11 @@ public class NurseryApplication implements CommandLineRunner{
        employee2.setRooms(rooms);
        employeeRepository.save(employee1);
        employeeRepository.save(employee2);
+       
+       //test item entity
+       Item item = new Item(100, "Chair");
+       item.setRoom(room1);
+       itemRepository.save(item);
     }
 
 }

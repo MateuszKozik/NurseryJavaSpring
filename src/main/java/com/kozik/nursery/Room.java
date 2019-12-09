@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +28,9 @@ public class Room {
     
     @ManyToMany(mappedBy = "rooms")
     private Set<Employee> employees = new HashSet<Employee>();
+    
+    @OneToMany(mappedBy = "room")
+    private Set<Item> items = new HashSet<Item>();
     
     protected Room(){}
 
@@ -64,6 +68,14 @@ public class Room {
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
+    }
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 
     @Override

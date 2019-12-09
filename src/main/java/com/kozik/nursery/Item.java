@@ -3,6 +3,8 @@ package com.kozik.nursery;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,10 @@ public class Item {
     @Column(name = "item_name", nullable = false, length = 25)
     private String itemName;
 
+    @ManyToOne
+    @JoinColumn(name = "roomID", nullable = true)
+    private Room room;
+    
     protected Item(){}
 
     public Item(Integer inventoryNumber, String itemName) {
@@ -37,6 +43,14 @@ public class Item {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     @Override
