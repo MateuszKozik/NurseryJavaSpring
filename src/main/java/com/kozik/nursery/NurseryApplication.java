@@ -25,6 +25,8 @@ public class NurseryApplication implements CommandLineRunner{
     private ParentRepository parentRepository;
     @Autowired
     private ChildRepository childRepository;
+    @Autowired
+    private GroupRepository groupRepository;
     
     @Override
     public void run(String... args)  {
@@ -110,6 +112,13 @@ public class NurseryApplication implements CommandLineRunner{
        parent2.setChildren(children);
     
        parentRepository.save(parent2);
+       
+       //test group entity
+       Group group1 = new Group("One year");
+       Group group2 = new Group("Two year");
+       
+       groupRepository.save(group1);
+       groupRepository.save(group2);
     }
 
 }
