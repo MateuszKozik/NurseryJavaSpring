@@ -31,6 +31,8 @@ public class NurseryApplication implements CommandLineRunner{
     private FeeRepository feeRepository;
     @Autowired
     private RecordRepository recordRepository;
+    @Autowired
+    private RoomRepository roomRepository;
     
     @Override
     public void run(String... args)  {
@@ -144,6 +146,20 @@ public class NurseryApplication implements CommandLineRunner{
        record1.setFee(fee1);
        record1.setGroup(group1);
        recordRepository.save(record1);
+      
+       //test room entity
+       Room room1 = new Room("Playroom");
+       roomRepository.save(room1);
+       
+       Set<Room> rooms = new HashSet<Room>();
+       rooms.add(room1);
+       group1.setRooms(rooms);
+       groupRepository.save(group1);
+
+       employee1.setRooms(rooms);
+       employee2.setRooms(rooms);
+       employeeRepository.save(employee1);
+       employeeRepository.save(employee2);
     }
 
 }
