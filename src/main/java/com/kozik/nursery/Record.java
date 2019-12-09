@@ -34,6 +34,10 @@ public class Record {
     @JoinColumn(name = "childID", nullable = false)
     private Child child;
     
+    @ManyToOne
+    @JoinColumn(name = "feeID", nullable = true)
+    private Fee fee;
+    
     protected Record(){}
 
     public Record(LocalDate dateOfRecord, Integer monthsNumber, Child child) {
@@ -80,6 +84,14 @@ public class Record {
 
     public void setChild(Child child) {
         this.child = child;
+    }
+
+    public Fee getFee() {
+        return fee;
+    }
+
+    public void setFee(Fee fee) {
+        this.fee = fee;
     }
 
     @Override

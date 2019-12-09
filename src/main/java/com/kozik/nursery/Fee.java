@@ -1,11 +1,14 @@
 package com.kozik.nursery;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +29,9 @@ public class Fee {
     @Column(name = "update_date", nullable = false)
     private LocalDate updateDate;
 
+    @OneToMany(mappedBy = "fee")
+    private Set<Record> records = new HashSet<Record>();
+    
     protected Fee(){}
 
     public Fee(Double tuition, Double meals, LocalDate updateDate) {
@@ -64,6 +70,14 @@ public class Fee {
 
     public void setUpdateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Set<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(Set<Record> records) {
+        this.records = records;
     }
 
     @Override

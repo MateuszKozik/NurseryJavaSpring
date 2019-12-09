@@ -29,6 +29,8 @@ public class NurseryApplication implements CommandLineRunner{
     private GroupRepository groupRepository;
     @Autowired
     private FeeRepository feeRepository;
+    @Autowired
+    private RecordRepository recordRepository;
     
     @Override
     public void run(String... args)  {
@@ -136,6 +138,12 @@ public class NurseryApplication implements CommandLineRunner{
        //test fee entity
        Fee fee1 = new Fee(1200.00, 360.00, LocalDate.now());
        feeRepository.save(fee1);
+       
+       //test record entity
+       Record record1 = new Record(LocalDate.of(2019, 12, 12), 3, child1);
+       record1.setFee(fee1);
+       record1.setGroup(group1);
+       recordRepository.save(record1);
     }
 
 }
