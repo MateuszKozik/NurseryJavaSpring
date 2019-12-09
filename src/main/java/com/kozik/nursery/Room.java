@@ -18,4 +18,31 @@ public class Room {
     
     @Column(name = "room_description", nullable = false, length = 60)
     private String roomDescription;
+
+    protected Room(){}
+
+    public Room(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+    
+    public Integer getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(Integer roomID) {
+        this.roomID = roomID;
+    }
+
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+
+    public void setRoomDescription(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" + "roomID=" + roomID + ", roomDescription=" + roomDescription + '}';
+    }
 }
