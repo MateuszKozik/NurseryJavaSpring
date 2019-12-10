@@ -15,15 +15,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Check;
 
 @Entity()
 @Table(name = "employees")
+@Check(constraints = "name ~ '^[A-Za-zęóąśłżźćńĘÓĄŚŁŻŹĆŃ]*$'"
+        + "and surname ~ '^[A-Za-zęóąśłżźćńĘÓĄŚŁŻŹĆŃ]*$'"
+        + "and phone_number ~ '^[0-9]{9}$'"
+        + "and base_salary > '0'"
+        + "and extra_pay > '0'")
 public class Employee {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "emplyeeID", nullable = false)
-    private Integer emplyeeID;
+    @Column(name = "employeeID", nullable = false)
+    private Integer employeeID;
     
     @Column(name = "name", nullable = false, length = 25)
     private String name;
@@ -32,7 +38,7 @@ public class Employee {
     private String surname;
     
     @Column(name = "employment_date", nullable = false)
-    private LocalDate emplymentDate;
+    private LocalDate employmentDate;
     
     @Column(name = "phone_number", nullable = false, length = 9)
     private String phoneNumber;
@@ -77,21 +83,21 @@ public class Employee {
     
     protected Employee(){}
 
-    public Employee(String name, String surname, LocalDate emplymentDate, String phoneNumber, User user) {
+    public Employee(String name, String surname, LocalDate employmentDate, String phoneNumber, User user) {
         this.name = name;
         this.surname = surname;
-        this.emplymentDate = emplymentDate;
+        this.employmentDate = employmentDate;
         this.phoneNumber = phoneNumber;
         this.user = user;
     }
     
     
-    public Integer getEmplyeeID() {
-        return emplyeeID;
+    public Integer getEmployeeID() {
+        return employeeID;
     }
 
-    public void setEmplyeeID(Integer emplyeeID) {
-        this.emplyeeID = emplyeeID;
+    public void setEmployeeID(Integer employeeID) {
+        this.employeeID = employeeID;
     }
 
     public String getName() {
@@ -110,12 +116,12 @@ public class Employee {
         this.surname = surname;
     }
 
-    public LocalDate getEmplymentDate() {
-        return emplymentDate;
+    public LocalDate getEmploymentDate() {
+        return employmentDate;
     }
 
-    public void setEmplymentDate(LocalDate emplymentDate) {
-        this.emplymentDate = emplymentDate;
+    public void setEmplymentDate(LocalDate employmentDate) {
+        this.employmentDate = employmentDate;
     }
 
     public String getPhoneNumber() {
@@ -200,7 +206,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "emplyeeID=" + emplyeeID + ", name=" + name + ", surname=" + surname + ", emplymentDate=" + emplymentDate.toString() + ", phoneNumber=" + phoneNumber + ", position=" + position + ", baseSalary=" + baseSalary + ", extraPay=" + extraPay+"}";
+        return "Employee{" + "employeeID=" + employeeID + ", name=" + name + ", surname=" + surname + ", employmentDate=" + employmentDate.toString() + ", phoneNumber=" + phoneNumber + ", position=" + position + ", baseSalary=" + baseSalary + ", extraPay=" + extraPay+"}";
     }
     
     
