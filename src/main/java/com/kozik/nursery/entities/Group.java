@@ -20,7 +20,7 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "groupID", nullable = false)
-    private Integer groupID;
+    private Long groupID;
     
     @Column(name = "group_description", nullable = false, length = 60)
     private String groupDescription;
@@ -44,11 +44,11 @@ public class Group {
         this.groupDescription = groupDescription;
     }
 
-    public Integer getGroupID() {
+    public Long getGroupID() {
         return groupID;
     }
 
-    public void setGroupID(Integer groupID) {
+    public void setGroupID(Long groupID) {
         this.groupID = groupID;
     }
 

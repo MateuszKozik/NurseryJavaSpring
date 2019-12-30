@@ -18,7 +18,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "roomID", nullable = false)
-    private Integer roomID;
+    private Long roomID;
     
     @Column(name = "room_description", nullable = false, length = 60)
     private String roomDescription;
@@ -37,12 +37,12 @@ public class Room {
     public Room(String roomDescription) {
         this.roomDescription = roomDescription;
     }
-    
-    public Integer getRoomID() {
+
+    public Long getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(Integer roomID) {
+    public void setRoomID(Long roomID) {
         this.roomID = roomID;
     }
 

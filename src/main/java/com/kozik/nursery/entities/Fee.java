@@ -18,7 +18,7 @@ public class Fee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "feeID", nullable = false)
-    private Integer feeID;
+    private Long feeID;
     
     @Column(name = "tution", nullable = false)
     private Double tuition;
@@ -39,15 +39,15 @@ public class Fee {
         this.meals = meals;
         this.updateDate = updateDate;
     }
-    
-    public Integer getFeeID() {
+
+    public Long getFeeID() {
         return feeID;
     }
 
-    public void setFeeID(Integer feeID) {
+    public void setFeeID(Long feeID) {
         this.feeID = feeID;
     }
-
+    
     public Double getTuition() {
         return tuition;
     }

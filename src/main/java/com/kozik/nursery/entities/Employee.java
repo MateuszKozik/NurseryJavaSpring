@@ -29,7 +29,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "employeeID", nullable = false)
-    private Integer employeeID;
+    private Long employeeID;
     
     @Column(name = "name", nullable = false, length = 25)
     private String name;
@@ -90,16 +90,15 @@ public class Employee {
         this.phoneNumber = phoneNumber;
         this.user = user;
     }
-    
-    
-    public Integer getEmployeeID() {
+
+    public Long getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(Integer employeeID) {
+    public void setEmployeeID(Long employeeID) {
         this.employeeID = employeeID;
     }
-
+    
     public String getName() {
         return name;
     }

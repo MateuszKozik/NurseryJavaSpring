@@ -13,7 +13,7 @@ public class Item {
     
     @Id
     @Column(name = "inventory_number", nullable = false)
-    private Integer inventoryNumber;
+    private Long inventoryNumber;
     
     @Column(name = "item_name", nullable = false, length = 25)
     private String itemName;
@@ -24,16 +24,16 @@ public class Item {
     
     public Item(){}
 
-    public Item(Integer inventoryNumber, String itemName) {
+    public Item(Long inventoryNumber, String itemName) {
         this.inventoryNumber = inventoryNumber;
         this.itemName = itemName;
     }
-    
-    public Integer getInventoryNumber() {
+
+    public Long getInventoryNumber() {
         return inventoryNumber;
     }
 
-    public void setInventoryNumber(Integer inventoryNumber) {
+    public void setInventoryNumber(Long inventoryNumber) {
         this.inventoryNumber = inventoryNumber;
     }
 

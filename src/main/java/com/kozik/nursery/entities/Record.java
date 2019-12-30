@@ -17,7 +17,7 @@ public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "recordID", nullable = false)
-    private Integer recordID;
+    private Long recordID;
     
     @Column(name = "date_of_record", nullable = false)
     private LocalDate dateOfRecord;
@@ -35,15 +35,15 @@ public class Record {
     private Fee fee;
     
     public Record(){}
-    
-    public Integer getRecordID() {
+
+    public Long getRecordID() {
         return recordID;
     }
 
-    public void setRecordID(Integer recordID) {
+    public void setRecordID(Long recordID) {
         this.recordID = recordID;
     }
-
+   
     public LocalDate getDateOfRecord() {
         return dateOfRecord;
     }
