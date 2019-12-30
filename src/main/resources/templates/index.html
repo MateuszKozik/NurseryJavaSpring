@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="windows-1250">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Strona Główna</title>
     </head>
     <body>
-        <div>Hello!</div>
+        <div layout:fragment="content" class="container">
+                        
+        </div>     
     </body>
 </html>
