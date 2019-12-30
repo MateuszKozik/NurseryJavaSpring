@@ -22,9 +22,6 @@ public class Record {
     @Column(name = "date_of_record", nullable = false)
     private LocalDate dateOfRecord;
     
-    @Column(name = "months_number", nullable = false)
-    private Integer monthsNumber;
-    
     @ManyToOne
     @JoinColumn(name = "groupID", nullable = true)
     private Group group;
@@ -38,12 +35,6 @@ public class Record {
     private Fee fee;
     
     protected Record(){}
-
-    public Record(LocalDate dateOfRecord, Integer monthsNumber, Child child) {
-        this.dateOfRecord = dateOfRecord;
-        this.monthsNumber = monthsNumber;   
-        this.child = child;
-    }
     
     public Integer getRecordID() {
         return recordID;
@@ -59,14 +50,6 @@ public class Record {
 
     public void setDateOfRecord(LocalDate dateOfRecord) {
         this.dateOfRecord = dateOfRecord;
-    }
-
-    public Integer getMonthsNumber() {
-        return monthsNumber;
-    }
-
-    public void setMonthsNumber(Integer monthsNumber) {
-        this.monthsNumber = monthsNumber;
     }
 
     public Group getGroup() {
@@ -95,6 +78,6 @@ public class Record {
 
     @Override
     public String toString() {
-        return "Record{" + "recordID=" + recordID + ", dateOfRecord=" + dateOfRecord.toString() + ", monthsNumber=" + monthsNumber + '}';
+        return "Record{" + "recordID=" + recordID + ", dateOfRecord=" + dateOfRecord.toString() + "}";
     }   
 }
