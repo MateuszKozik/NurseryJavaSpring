@@ -1,5 +1,5 @@
 
-package com.kozik.nursery;
+package com.kozik.nursery.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +14,7 @@ public class WebSecuityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/","/home").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().permitAll();
     }
 }
