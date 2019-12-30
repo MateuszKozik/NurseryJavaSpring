@@ -32,7 +32,7 @@ public class Fee {
     @OneToMany(mappedBy = "fee")
     private Set<Record> records = new HashSet<Record>();
     
-    protected Fee(){}
+    public Fee(){}
 
     public Fee(Double tuition, Double meals, LocalDate updateDate) {
         this.tuition = tuition;

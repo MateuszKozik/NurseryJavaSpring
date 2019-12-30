@@ -81,7 +81,7 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "roomID", nullable = false))
     private Set<Room> rooms = new HashSet<Room>();
     
-    protected Employee(){}
+    public Employee(){}
 
     public Employee(String name, String surname, LocalDate employmentDate, String phoneNumber, User user) {
         this.name = name;

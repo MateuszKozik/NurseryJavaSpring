@@ -47,7 +47,7 @@ public class Parent {
             inverseJoinColumns = @JoinColumn(name = "pesel", nullable = false))
     private Set<Child> children = new HashSet<Child>();
     
-    protected Parent(){}
+    public Parent(){}
 
     public Parent(String name, String surname, String phoneNumber, User user) {
         this.name = name;

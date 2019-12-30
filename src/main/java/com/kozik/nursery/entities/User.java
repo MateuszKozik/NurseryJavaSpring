@@ -42,7 +42,7 @@ public class User {
         @JoinColumn(name = "role_name", referencedColumnName = "name")})
     private Set<Role> roles;
     
-    protected User(){}
+    public User(){}
     
     public Integer getUserID() {
         return userID;

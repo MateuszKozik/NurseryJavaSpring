@@ -34,7 +34,7 @@ public class Record {
     @JoinColumn(name = "feeID", nullable = true)
     private Fee fee;
     
-    protected Record(){}
+    public Record(){}
     
     public Integer getRecordID() {
         return recordID;

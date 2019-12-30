@@ -32,7 +32,7 @@ public class Room {
     @OneToMany(mappedBy = "room")
     private Set<Item> items = new HashSet<Item>();
     
-    protected Room(){}
+    public Room(){}
 
     public Room(String roomDescription) {
         this.roomDescription = roomDescription;

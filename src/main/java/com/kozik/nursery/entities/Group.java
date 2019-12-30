@@ -38,7 +38,7 @@ public class Group {
             inverseJoinColumns = @JoinColumn(name = "roomID", nullable = false))
     private Set<Room> rooms = new HashSet<Room>();
     
-    protected Group(){}
+    public Group(){}
 
     public Group(String groupDescription) {
         this.groupDescription = groupDescription;

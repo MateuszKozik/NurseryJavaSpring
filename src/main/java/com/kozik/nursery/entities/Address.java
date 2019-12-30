@@ -39,7 +39,8 @@ public class Address {
     
     @OneToMany(mappedBy = "address")
     private Set<Parent> parents = new HashSet<Parent>();
-    protected Address(){}
+    
+    public Address(){}
 
     public Address(Integer houseNumber, String postcode, String city) {
         this.houseNumber = houseNumber;

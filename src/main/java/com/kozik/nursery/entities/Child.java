@@ -36,7 +36,7 @@ public class Child {
     @OneToMany(mappedBy = "child")
     private Set<Record> records = new HashSet<Record>();
     
-    protected Child(){}
+    public Child(){}
 
     public Child(String pesel, String name, String surname) {
         this.pesel = pesel;

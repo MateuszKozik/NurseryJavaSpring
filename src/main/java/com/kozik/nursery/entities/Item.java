@@ -22,7 +22,7 @@ public class Item {
     @JoinColumn(name = "roomID", nullable = true)
     private Room room;
     
-    protected Item(){}
+    public Item(){}
 
     public Item(Integer inventoryNumber, String itemName) {
         this.inventoryNumber = inventoryNumber;
