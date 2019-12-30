@@ -1,5 +1,15 @@
 package com.kozik.nursery;
 
+import com.kozik.nursery.repositories.EmployeeRepository;
+import com.kozik.nursery.repositories.RecordRepository;
+import com.kozik.nursery.repositories.UserRepository;
+import com.kozik.nursery.repositories.RoomRepository;
+import com.kozik.nursery.repositories.ChildRepository;
+import com.kozik.nursery.repositories.ParentRepository;
+import com.kozik.nursery.repositories.GroupRepository;
+import com.kozik.nursery.repositories.ItemRepository;
+import com.kozik.nursery.repositories.AddressRepository;
+import com.kozik.nursery.repositories.FeeRepository;
 import com.kozik.nursery.entities.Item;
 import com.kozik.nursery.entities.Room;
 import com.kozik.nursery.entities.Record;
