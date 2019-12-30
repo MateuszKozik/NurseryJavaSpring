@@ -1,5 +1,6 @@
 package com.kozik.nursery.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ public class User {
     @JoinTable(name = "users_roles",joinColumns = {
         @JoinColumn(name = "user_email", referencedColumnName = "email")}, inverseJoinColumns = {
         @JoinColumn(name = "role_name", referencedColumnName = "name")})
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<Role>();
     
     public User(){}
     

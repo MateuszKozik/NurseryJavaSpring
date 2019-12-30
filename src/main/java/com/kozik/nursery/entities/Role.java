@@ -1,5 +1,6 @@
 package com.kozik.nursery.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;   
+    private Set<User> users = new HashSet<User>();   
     
     public Role() {}
 
