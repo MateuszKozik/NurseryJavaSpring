@@ -1,4 +1,4 @@
-package com.kozik.nursery;
+package com.kozik.nursery.entities;
 
 import java.util.HashSet;
 import java.util.Set;

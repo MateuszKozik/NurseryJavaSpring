@@ -1,5 +1,4 @@
-
-package com.kozik.nursery;
+package com.kozik.nursery.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

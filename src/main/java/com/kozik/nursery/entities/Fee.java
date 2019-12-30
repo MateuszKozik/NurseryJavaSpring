@@ -1,4 +1,4 @@
-package com.kozik.nursery;
+package com.kozik.nursery.entities;
 
 import java.time.LocalDate;
 import java.util.HashSet;
