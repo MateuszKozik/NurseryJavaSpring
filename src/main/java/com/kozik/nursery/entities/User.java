@@ -2,8 +2,6 @@ package com.kozik.nursery.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -13,22 +11,18 @@ import javax.persistence.Table;
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userID", nullable = false)
-    private Integer userID;
-    
-    @Column(name = "username", nullable = false, length = 25, unique = true)
-    private String userName;
-    
-    @Column(name = "password", nullable = false, length = 60)
-    private String password;
-    
     @Column(name = "email", nullable = false, length = 35)
     private String email;
     
-    @Column(name = "roles", nullable = false, length = 25)
-    private String roles = "USER";
+    @Column(name = "userID", columnDefinition = "serial", insertable = false)
+    private Integer userID;
+
+    @Column(name = "password", nullable = false, length = 60)
+    private String password;
     
+    @Column(name = "retyped_password", nullable = false, length = 60)
+    private String retypePassword;
+
     @Column(name = "enabled", nullable = false)
     private Boolean enabled = true; 
 
@@ -40,34 +34,12 @@ public class User {
     
     protected User(){}
     
-       public User(String userName, String password, String email) {
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-    }
-       
-    public User(String userName, String password, String email, String roles) {
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        this.roles = roles;
-    }
-
-    
     public Integer getUserID() {
         return userID;
     }
 
     public void setUserID(Integer userID) {
         this.userID = userID;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {
@@ -84,14 +56,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
     }
 
     public Boolean getEnabled() {
@@ -117,13 +81,18 @@ public class User {
     public void setParent(Parent parent) {
         this.parent = parent;
     }
+
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
+    }
       
+    
     @Override
     public String toString() {
-        return "User{" + "userID=" + userID + ", userName=" + userName + ", password=" + password + ", email=" + email + ", roles=" + roles + ", enabled=" + enabled.toString() + '}';
-    }
-    
-  
-    
-    
+        return "User{" + "userID=" + userID + ", password=" + password + ", email=" + email + ", enabled=" + enabled.toString() + '}';
+    }  
 }

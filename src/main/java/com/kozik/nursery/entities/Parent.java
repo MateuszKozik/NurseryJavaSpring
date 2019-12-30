@@ -33,7 +33,7 @@ public class Parent {
     private String phoneNumber;
     
     @OneToOne
-    @JoinColumn(name = "userID", nullable = false, unique = true)
+    @JoinColumn(name = "user_email", nullable = false, unique = true)
     private User user;
     
     @ManyToOne

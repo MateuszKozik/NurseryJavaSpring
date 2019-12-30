@@ -60,7 +60,7 @@ public class Employee {
     private Set<Employee> subordinates = new HashSet<Employee>();
     
     @OneToOne
-    @JoinColumn(name = "userID", nullable = false, unique = true)
+    @JoinColumn(name = "user_email", nullable = false, unique = true)
     private User user;          
     
     @ManyToOne
