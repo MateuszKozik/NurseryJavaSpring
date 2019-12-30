@@ -18,8 +18,8 @@ public class AddressController {
     
     @GetMapping(value = "/address/list")
     public String listAll(Model model){
-        List<Address> listAddress = addressService.getAll();
-        model.addAttribute("listAddress", listAddress);
+        List<Address> addressList = addressService.getAll();
+        model.addAttribute("addressList", addressList);
         return "views/address/list";
     }
     
@@ -40,7 +40,7 @@ public class AddressController {
     public String edit(@PathVariable(name="id")long id, Model model){
         Address address = addressService.get(id);
         model.addAttribute("address", address);
-        return "views/adres/edit/";
+        return "views/address/edit";
     }
     
     @PostMapping(value = "/address/edit/{id}")
