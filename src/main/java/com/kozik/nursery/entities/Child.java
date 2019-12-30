@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "children")
+@Table(name = "childrens")
 public class Child {
    
     @Id
