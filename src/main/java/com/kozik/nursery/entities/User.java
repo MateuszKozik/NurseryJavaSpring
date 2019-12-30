@@ -1,8 +1,12 @@
 package com.kozik.nursery.entities;
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,6 +35,12 @@ public class User {
     
     @OneToOne(mappedBy = "user")
     private Parent parent;
+    
+    @ManyToMany
+    @JoinTable(name = "users_roles",joinColumns = {
+        @JoinColumn(name = "user_email", referencedColumnName = "email")}, inverseJoinColumns = {
+        @JoinColumn(name = "role_name", referencedColumnName = "name")})
+    private Set<Role> roles;
     
     protected User(){}
     
@@ -89,8 +99,15 @@ public class User {
     public void setRetypePassword(String retypePassword) {
         this.retypePassword = retypePassword;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
       
-    
     @Override
     public String toString() {
         return "User{" + "userID=" + userID + ", password=" + password + ", email=" + email + ", enabled=" + enabled.toString() + '}';
