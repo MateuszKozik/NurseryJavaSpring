@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChildService {
    
-    @Autowired ChildRepository childRepository;
+    @Autowired private ChildRepository childRepository;
     
     public List<Child> getAll(){
         return childRepository.findAll();
