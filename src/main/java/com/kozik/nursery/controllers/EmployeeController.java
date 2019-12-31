@@ -2,6 +2,7 @@ package com.kozik.nursery.controllers;
 
 import com.kozik.nursery.entities.Employee;
 import com.kozik.nursery.services.EmployeeService;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EmployeeController {
@@ -23,7 +25,7 @@ public class EmployeeController {
         return "views/employee/list";
     }
     
-    @GetMapping(value = "/emloyee/add")
+    @GetMapping(value = "/employee/add")
     public String add(Model model){
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
@@ -43,7 +45,7 @@ public class EmployeeController {
         return "views/employee/edit";
     }
     
-    @PostMapping(value = "/emloyee/edit/{id}")
+    @PostMapping(value = "/employee/edit/{id}")
     public String edit(@PathVariable("id")long id,
             @ModelAttribute("employee")Employee employee){
         employee.setEmployeeID(id);

@@ -1,6 +1,7 @@
 package com.kozik.nursery.entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -38,7 +39,7 @@ public class Employee {
     private String surname;
     
     @Column(name = "employment_date", nullable = false)
-    private LocalDate employmentDate;
+    private LocalDate dateOfEmployment;
     
     @Column(name = "phone_number", nullable = false, length = 9)
     private String phoneNumber;
@@ -60,7 +61,7 @@ public class Employee {
     private Set<Employee> subordinates = new HashSet<Employee>();
     
     @OneToOne
-    @JoinColumn(name = "user_email", nullable = false, unique = true)
+    @JoinColumn(name = "user_email", nullable = true, unique = true)
     private User user;          
     
     @ManyToOne
@@ -82,14 +83,6 @@ public class Employee {
     private Set<Room> rooms = new HashSet<Room>();
     
     public Employee(){}
-
-    public Employee(String name, String surname, LocalDate employmentDate, String phoneNumber, User user) {
-        this.name = name;
-        this.surname = surname;
-        this.employmentDate = employmentDate;
-        this.phoneNumber = phoneNumber;
-        this.user = user;
-    }
 
     public Long getEmployeeID() {
         return employeeID;
@@ -113,14 +106,6 @@ public class Employee {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public LocalDate getEmploymentDate() {
-        return employmentDate;
-    }
-
-    public void setEmplymentDate(LocalDate employmentDate) {
-        this.employmentDate = employmentDate;
     }
 
     public String getPhoneNumber() {
@@ -203,10 +188,16 @@ public class Employee {
         this.rooms = rooms;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" + "employeeID=" + employeeID + ", name=" + name + ", surname=" + surname + ", employmentDate=" + employmentDate.toString() + ", phoneNumber=" + phoneNumber + ", position=" + position + ", baseSalary=" + baseSalary + ", extraPay=" + extraPay+"}";
+    public String getDateOfEmployment() {
+         if (dateOfEmployment != null) {
+            return dateOfEmployment.toString();
+        } else {
+            return "";
+        }
     }
-    
-    
+
+    public void setDateOfEmployment(String dateOfEmployment) {
+        LocalDate date = LocalDate.parse(dateOfEmployment, DateTimeFormatter.ISO_LOCAL_DATE);
+        this.dateOfEmployment = date;
+    }
 }
