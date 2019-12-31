@@ -40,7 +40,7 @@ public class ItemController {
     public String edit(@PathVariable("id")long id, Model model){
         Item item = itemService.get(id);
         model.addAttribute("item", item);
-        return "views/item/eidt";
+        return "views/item/edit";
     }
     
     @PostMapping(value = "/item/edit/{id}")
