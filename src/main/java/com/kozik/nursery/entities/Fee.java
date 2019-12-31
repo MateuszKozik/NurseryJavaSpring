@@ -1,6 +1,7 @@
 package com.kozik.nursery.entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -64,12 +65,17 @@ public class Fee {
         this.meals = meals;
     }
 
-    public LocalDate getUpdateDate() {
-        return updateDate;
+    public String getUpdateDate() {
+         if (updateDate != null) {
+            return updateDate.toString();
+        } else {
+            return "";
+        }
     }
 
-    public void setUpdateDate(LocalDate updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdateDate(String updateDate) {
+        LocalDate date = LocalDate.parse(updateDate, DateTimeFormatter.ISO_LOCAL_DATE);
+        this.updateDate = date;
     }
 
     public Set<Record> getRecords() {
