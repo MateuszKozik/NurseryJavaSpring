@@ -21,7 +21,7 @@ public class Fee {
     @Column(name = "feeID", nullable = false)
     private Long feeID;
     
-    @Column(name = "tution", nullable = false)
+    @Column(name = "tuition", nullable = false)
     private Double tuition;
     
     @Column(name = "meals", nullable = false)
