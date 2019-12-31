@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class FeeService {
     
-    @Autowired FeeRepository feeRepository;
+    @Autowired private FeeRepository feeRepository;
     
     public List<Fee> getAll(){
         return feeRepository.findAll();
