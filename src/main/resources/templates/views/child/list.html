@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <script type="text/javascript" src="/js/search.js"></script>
+        <title>Lista dzieci</title>               
+    </head>
+
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <div class="row">
+                <div class="col-md-4 my-1">
+                    <a href="add" class="btn btn-info" role="button">Dodaj dziecko</a>
+                </div>
+                <div class="col-md-4 offset-md-4 my-1">
+                    <input type="search"  placeholder="Szukaj..." class="form-control search-input border-info" id="search"/>
+                </div>
+            </div>
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Pesel</th>  
+                            <th>Imię</th>  
+                            <th>Nazwisko</th>
+                            <th>Specjalne wymagania</th>
+                            <th>Opis wymagań</th>  
+                            <th>Akcje</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="table">                       
+                        <tr th:each ="child : ${childList}">                                     
+                            <td> <b  th:text="${child.pesel}">...</b> </td>
+                            <td> <b  th:text="${child.name}">...</b> </td>
+                            <td> <b  th:text="${child.surname}">...</b> </td>
+                            <td> <b  th:if="${child.specialRequirements} == true">Tak</b> 
+                          <b  th:unless="${child.specialRequirements} == true">Nie</b> </td>
+                            <td> <b  th:text="${child.requirementsDescription}">...</b> </td>   
+                            <td>
+                                <a class="btn btn-danger" th:href="'#modal'+${child.pesel}" data-toggle="modal">Usuń</a>
+                                <div class="modal fade" th:id="'modal'+${child.pesel}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Usuwanie</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Czy na pewno chcesz usunąć?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                                <a class="btn btn-primary my-1" th:href="@{'delete/' + ${child.pesel}}">Tak</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary my-1" th:href="@{'edit/' + ${child.pesel}}">Edytuj</a>
+                            </td>               
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+

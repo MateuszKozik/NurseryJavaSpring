@@ -46,7 +46,6 @@ public class ChildController {
     @PostMapping(value = "/child/edit/{pesel}")
     public String edit(@PathVariable("pesel")String pesel,
             @ModelAttribute("child")Child child){
-        child.setPesel(pesel);
         childService.save(child);
         return "redirect:/child/list";
     }
