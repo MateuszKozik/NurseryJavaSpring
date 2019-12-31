@@ -23,14 +23,14 @@ public class GroupController {
         return "views/group/list";
     }
     
-    @GetMapping(value = "/group/save")
+    @GetMapping(value = "/group/add")
     public String add(Model model){
         Group group = new Group();
         model.addAttribute("group", group);
         return "views/group/add";
     }
     
-    @PostMapping(value = "/group/save")
+    @PostMapping(value = "/group/add")
     public String add(@ModelAttribute("group")Group group){
         groupService.save(group);
         return "redirect:/group/list";
