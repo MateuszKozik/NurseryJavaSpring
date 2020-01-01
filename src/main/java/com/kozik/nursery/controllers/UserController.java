@@ -43,8 +43,7 @@ public class UserController {
     
     @PostMapping(value = "/user/add")
     public String add(@ModelAttribute("user") User user, Model model,
-            @RequestParam(name = "roles")ArrayList<Role> roleList) {
-        Set<Role> roles = new HashSet<Role>(roleList);
+            @RequestParam(name = "roles")HashSet<Role> roles) {
         String password = user.getPassword();
         String retyped = user.getRetypedPassword();
         if (password.equals(retyped)) {
