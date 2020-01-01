@@ -2,9 +2,11 @@ package com.kozik.nursery.controllers;
 
 import com.kozik.nursery.entities.Parent;
 import com.kozik.nursery.entities.User;
+import com.kozik.nursery.entities.Child;
 import com.kozik.nursery.entities.Address;
 import com.kozik.nursery.services.ParentService;
 import com.kozik.nursery.services.UserService;
+import com.kozik.nursery.services.ChildService;
 import com.kozik.nursery.services.AddressService;
 import java.util.HashSet;
 import java.util.List;
@@ -23,6 +25,7 @@ public class ParentController {
     @Autowired private ParentService parentService;
     @Autowired private UserService userService;
     @Autowired private AddressService addressService;
+    @Autowired private ChildService childService;
     
     @GetMapping(value = "/parent/list")
     public String listAll(Model model){
@@ -35,17 +38,21 @@ public class ParentController {
     public String add(Model model){
         List<User> userList = userService.getAll();
         List<Address> addressList = addressService.getAll();
+        List<Child> childList = childService.getAll();
         Parent parent = new Parent();
         model.addAttribute("parent", parent);
         model.addAttribute("userList", userList);
         model.addAttribute("addressList", addressList);
+        model.addAttribute("childList", childList);
         return "views/parent/add";
     }
     
     @PostMapping(value = "/parent/add")
     public String add(@ModelAttribute("parent")Parent parent,
             @RequestParam(name = "users")User user,
-            @RequestParam(name = "addresses")Address address){
+            @RequestParam(name = "addresses")Address address,
+            @RequestParam(name = "children")HashSet<Child> children){
+        parent.setChildren(children);
         parent.setAddress(address);
         parent.setUser(user);
         parentService.save(parent);
@@ -56,10 +63,12 @@ public class ParentController {
     public String edit(@PathVariable("id")long id, Model model){
         List<User> userList = userService.getAll();
         List<Address> addressList = addressService.getAll();
+        List<Child> childList = childService.getAll();
         Parent parent = parentService.get(id);
         model.addAttribute("parent", parent);
         model.addAttribute("userList", userList);
         model.addAttribute("addressList", addressList);
+        model.addAttribute("childList", childList);
         return "views/parent/edit";
     }
     
@@ -67,8 +76,10 @@ public class ParentController {
     public String edit(@PathVariable("id")long id,
             @ModelAttribute("parent")Parent parent,
             @RequestParam(name = "users")User user,
-            @RequestParam(name = "addresses")Address address){
+            @RequestParam(name = "addresses")Address address,
+            @RequestParam(name = "children")HashSet<Child> children){
         parent.setParentID(id);
+        parent.setChildren(children);
         parent.setAddress(address);
         parent.setUser(user);
         parentService.save(parent);

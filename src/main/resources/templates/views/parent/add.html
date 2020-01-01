@@ -3,6 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">  
     <head>
+        <script type="text/javascript" src="/js/bootstrap-multiselect.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap-multiselect.css" type="text/css"/>
         <title>Dodaj rodzica</title>
     </head>
     <body>
@@ -80,6 +82,20 @@
                             </select>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">                 
+                    <div class="col-md-4 offset-md-4 text-center">                         
+                        <div class="form-group">  
+                            <label> Wybierz dzieci </label>
+                            <select class="form-control" multiple id="childrens" name="children">
+                                <option th:each="child : ${childList}"        
+                                        th:value="${child.pesel}"
+                                        th:text="${child.pesel}+' - '+${child.name}+' '+${child.surname}">
+                                </option>
+                            </select>       
+                        </div>    
+                    </div>    
                 </div>
 
                 <div class="row">

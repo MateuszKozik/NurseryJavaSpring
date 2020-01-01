@@ -25,6 +25,7 @@
                             <th>Imię</th>
                             <th>Nazwisko</th>
                             <th>Numer telefonu</th>
+                            <th>Dzieci</th>
                             <th>Akcje</th>
                         </tr>
 
@@ -34,7 +35,12 @@
                             <td> <b  th:text="${parent.pesel}">...</b> </td>  
                             <td> <b  th:text="${parent.name}">...</b> </td>  
                             <td> <b  th:text="${parent.surname}">...</b> </td>
-                            <td> <b  th:text="${parent.phoneNumber}">...</b> </td>  
+                            <td> <b  th:text="${parent.phoneNumber}">...</b> </td> 
+                            <td>  
+                                <div class="form-check" th:each="child : ${parent.children}">
+                                    <b class="form-check-label" th:text="${child.pesel}"></b>
+                                </div>
+                            </td>
                             <td>
                                 <a class="btn btn-danger" th:href="'#modal'+ ${parent.parentID}" data-toggle="modal">Usuń</a>
                                 <div class="modal fade" th:id="'modal'+ ${parent.parentID}" tabindex="-1">
