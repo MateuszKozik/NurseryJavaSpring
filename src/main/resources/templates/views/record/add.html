@@ -18,6 +18,36 @@
                 </div> 
                 
                 <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Opłata </label>
+                            <select class="form-control" name="fee">
+                                <option value="">Wybierz opłatę</option>
+                                <option th:each="fee : ${feeList}"        
+                                        th:value="${fee.feeID}"
+                                        th:text="${fee.updateDate}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Grupa </label>
+                            <select class="form-control" name="group">
+                                <option value="">Wybierz grupę</option>
+                                <option th:each="group : ${groupList}"        
+                                        th:value="${group.groupID}"
+                                        th:text="${group.groupDescription}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
                     </div>
