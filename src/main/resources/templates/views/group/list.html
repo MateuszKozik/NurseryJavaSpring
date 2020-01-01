@@ -22,13 +22,25 @@
                     <thead class="thead-dark">
                         <tr  class="active">
                             <th>Opis grupy</th>
+                            <th>Pracownicy</th>
+                            <th>Pomieszczenia</th>
                             <th>Akcje</th>
                         </tr>
 
                     </thead>
                     <tbody id="table">                       
                         <tr th:each ="group : ${groupList}">                                     
-                            <td> <b  th:text="${group.groupDescription}">...</b> </td>  
+                            <td> <b  th:text="${group.groupDescription}">...</b> </td> 
+                            <td>  
+                                <div class="form-check" th:each="employee : ${group.employees}">
+                                    <b class="form-check-label" th:text="${employee.name}+' '+${employee.surname}"></b>
+                                </div>
+                            </td>
+                             <td>  
+                                <div class="form-check" th:each="room : ${group.rooms}">
+                                    <b class="form-check-label" th:text="${room.roomDescription}"></b>
+                                </div>
+                            </td>
                             <td>
                                 <a class="btn btn-danger" th:href="'#modal'+ ${group.groupID}" data-toggle="modal">Usuń</a>
                                 <div class="modal fade" th:id="'modal'+ ${group.groupID}" tabindex="-1">
