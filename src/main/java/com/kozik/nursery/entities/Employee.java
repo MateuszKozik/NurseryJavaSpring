@@ -68,11 +68,7 @@ public class Employee {
     @JoinColumn(name = "addressID", nullable = true)
     private Address address;
     
-    @ManyToMany
-    @JoinTable(
-            name = "employees_groups",
-            joinColumns = @JoinColumn(name = "employeeID", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "groupID", nullable = false))
+    @ManyToMany(mappedBy = "employees")
     private Set<Group> groups = new HashSet<Group>();
     
     @ManyToMany

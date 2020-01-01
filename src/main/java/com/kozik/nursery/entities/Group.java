@@ -25,7 +25,11 @@ public class Group {
     @Column(name = "group_description", nullable = false, length = 60)
     private String groupDescription;
     
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany
+    @JoinTable(
+            name = "employees_groups",
+            joinColumns = @JoinColumn(name = "groupID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "employeeID", nullable = false))
     private Set<Employee> employees = new HashSet<Employee>();
       
     @OneToMany(mappedBy = "group")
