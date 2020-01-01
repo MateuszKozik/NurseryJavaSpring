@@ -26,7 +26,7 @@ public class User {
     private String password;
     
     @Column(name = "retyped_password", nullable = false, length = 60)
-    private String retypePassword;
+    private String retypedPassword;
 
     @Column(name = "enabled", nullable = false)
     private Boolean enabled = true; 
@@ -93,12 +93,12 @@ public class User {
         this.parent = parent;
     }
 
-    public String getRetypePassword() {
-        return retypePassword;
+    public String getRetypedPassword() {
+        return retypedPassword;
     }
 
-    public void setRetypePassword(String retypePassword) {
-        this.retypePassword = retypePassword;
+    public void setRetypedPassword(String retypedPassword) {
+        this.retypedPassword = retypedPassword;
     }
 
     public Set<Role> getRoles() {
