@@ -46,6 +46,25 @@
                     </div>    
                 </div> 
 
+                <div class="col-md-4 offset-md-4 text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label> Konto aktywne </label>
+                            <div class="form-group"> 
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" th:field="${user.enabled}" value="true" required>
+                                    <label class="form-check-label"> Tak </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" th:field="${user.enabled}" value="false">
+                                    <label class="form-check-label"> Nie </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
