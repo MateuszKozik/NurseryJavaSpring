@@ -23,6 +23,7 @@
                         <tr  class="active">
                             <th>Numer inwentarzowy</th>
                             <th>Nazwa przedmiotu</th>
+                            <th>Pomieszczenie</th>
                             <th>Akcje</th>
                         </tr>
 
@@ -31,6 +32,7 @@
                         <tr th:each ="item : ${itemList}">
                             <td> <b  th:text="${item.inventoryNumber}">...</b> </td>  
                             <td> <b  th:text="${item.itemName}">...</b> </td>  
+                            <td> <b  th:if="${item.room}" th:text="${item.room.roomDescription}">...</b> </td> 
                             <td>
                                 <a class="btn btn-danger" th:href="'#modal'+ ${item.inventoryNumber}" data-toggle="modal">Usuń</a>
                                 <div class="modal fade" th:id="'modal'+ ${item.inventoryNumber}" tabindex="-1">
