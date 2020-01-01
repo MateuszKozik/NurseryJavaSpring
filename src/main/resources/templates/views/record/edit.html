@@ -60,6 +60,27 @@
                 </div>
                 
                 <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Dziecko </label>
+                            <select class="form-control" name="child">
+                                <option
+                                    th:value="${record.child} ? ${record.child.pesel} : ''" 
+                                    th:text="${record.child} ? ${record.child.pesel}+' - '+${record.child.name}+' '+${record.child.surname} : 'Wybierz dziecko'">          
+                                </option>
+                                <option value="">
+                                    Wybierz dziecko
+                                </option>
+                                <option th:each="child : ${childList}"        
+                                        th:value="${child.pesel}"
+                                        th:text="${child.pesel}+' - '+${child.name}+' '+${child.surname}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
                     </div>

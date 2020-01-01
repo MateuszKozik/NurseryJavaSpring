@@ -1,9 +1,11 @@
 package com.kozik.nursery.controllers;
 
+import com.kozik.nursery.entities.Child;
 import com.kozik.nursery.entities.Fee;
 import com.kozik.nursery.entities.Group;
 import com.kozik.nursery.services.RecordService;
 import com.kozik.nursery.entities.Record;
+import com.kozik.nursery.services.ChildService;
 import com.kozik.nursery.services.FeeService;
 import com.kozik.nursery.services.GroupService;
 import java.util.List;
@@ -22,6 +24,7 @@ public class RecordController {
     @Autowired private RecordService recordService;
     @Autowired private FeeService feeService;
     @Autowired private GroupService groupService;
+    @Autowired private ChildService childService;
     
     @GetMapping(value = "/record/list")
     public String listAll(Model model){
@@ -34,17 +37,21 @@ public class RecordController {
     public String add(Model model){
         List<Group> groupList = groupService.getAll();
         List<Fee> feeList = feeService.getAll();
+        List<Child> childList = childService.getAll();
         Record record = new Record();
         model.addAttribute("record", record);
         model.addAttribute("groupList", groupList);
         model.addAttribute("feeList", feeList);
+        model.addAttribute("childList", childList);
         return "views/record/add";
     }
     
     @PostMapping(value = "/record/add")
     public String add(@ModelAttribute("record")Record record,
             @RequestParam("group")Group group,
-            @RequestParam("fee")Fee fee){
+            @RequestParam("fee")Fee fee,
+            @RequestParam("child")Child child){
+        record.setChild(child);
         record.setGroup(group);
         record.setFee(fee);
         recordService.save(record);
@@ -55,10 +62,12 @@ public class RecordController {
     public String edit(@PathVariable("id")long id, Model model){
         List<Group> groupList = groupService.getAll();
         List<Fee> feeList = feeService.getAll();
+        List<Child> childList = childService.getAll();
         Record record = recordService.get(id);
         model.addAttribute("record", record);
         model.addAttribute("groupList", groupList);
         model.addAttribute("feeList", feeList);
+        model.addAttribute("childList", childList);
         return "views/record/edit";
     }
     
@@ -66,10 +75,12 @@ public class RecordController {
     public String edit(@PathVariable("id")long id,
             @ModelAttribute("record")Record record,
             @RequestParam("group")Group group,
-            @RequestParam("fee")Fee fee){
+            @RequestParam("fee")Fee fee,
+            @RequestParam("child")Child child){
         record.setRecordID(id);
         record.setGroup(group);
         record.setFee(fee);
+        record.setChild(child);
         recordService.save(record);
         return "redirect:/record/list";
     }
