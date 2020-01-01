@@ -77,6 +77,59 @@
                     </div>
                 </div>
 
+                 <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Adres </label>
+                            <select class="form-control" name="address">
+                                <option value="">Wybierz adres</option>
+                                <option th:each="address : ${addressList}"
+                                        th:if="${address.flatNumber != ''}"
+                                        th:value="${address.addressID}"
+                                        th:text="${address.street}+' '+${address.houseNumber}+'/'+
+                                        ${address.flatNumber}+', '+${address.postcode}+' '+${address.city}">
+                                </option>
+                                <option th:each="address : ${addressList}"
+                                        th:if="${address.flatNumber == ''}"
+                                        th:value="${address.addressID}"
+                                        th:text="${address.street}+' '+${address.houseNumber}
+                                        +', '+${address.postcode}+' '+${address.city}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Użytkownik </label>
+                            <select class="form-control" name="user">
+                                <option value="">Wybierz użytkownika</option>
+                                <option th:each="user : ${userList}"        
+                                        th:value="${user.email}"
+                                        th:text="${user.email}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Przełożony </label>
+                            <select class="form-control" name="supervisor">
+                                <option value="">Wybierz przełożonego</option>
+                                <option th:each="employee : ${employeeList}"        
+                                        th:value="${employee.employeeID}"
+                                        th:text="${employee.name}+' '+${employee.surname}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
