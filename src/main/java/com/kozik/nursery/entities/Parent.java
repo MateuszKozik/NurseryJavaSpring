@@ -23,6 +23,9 @@ public class Parent {
     @Column(name = "parentID", nullable = false)
     private Long parentID;
     
+    @Column(name = "pesel", nullable = false, length = 11)
+    private String pesel;
+    
     @Column(name = "name", nullable = false, length = 25)
     private String name;
     
@@ -33,7 +36,7 @@ public class Parent {
     private String phoneNumber;
     
     @OneToOne
-    @JoinColumn(name = "user_email", nullable = false, unique = true)
+    @JoinColumn(name = "user_email", nullable = true, unique = true)
     private User user;
     
     @ManyToOne
@@ -112,6 +115,14 @@ public class Parent {
         this.children = children;
     }
 
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+    
     @Override
     public String toString() {
         return "Parent{" + "parentID=" + parentID + ", name=" + name + ", surname=" + surname + ", phoneNumber=" + phoneNumber + '}';
