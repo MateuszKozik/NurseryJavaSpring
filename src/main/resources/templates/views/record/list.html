@@ -27,7 +27,7 @@
 
                     </thead>
                     <tbody id="table">                       
-                        <tr th:each ="record : {recordList}">
+                        <tr th:each ="record : ${recordList}">
                             <td> <b  th:text="${record.dateOfRecord}">...</b> </td>  
                             <td>
                                 <a class="btn btn-danger" th:href="'#modal'+ ${record.recordID}" data-toggle="modal">Usuń</a>

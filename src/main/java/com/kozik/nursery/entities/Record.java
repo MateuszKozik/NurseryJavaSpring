@@ -1,6 +1,7 @@
 package com.kozik.nursery.entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Record {
     private Group group;
     
     @ManyToOne
-    @JoinColumn(name = "childID", nullable = false)
+    @JoinColumn(name = "child_pesel", nullable = true)
     private Child child;
     
     @ManyToOne
@@ -44,12 +45,17 @@ public class Record {
         this.recordID = recordID;
     }
    
-    public LocalDate getDateOfRecord() {
-        return dateOfRecord;
+    public String getDateOfRecord() {
+         if (dateOfRecord != null) {
+            return dateOfRecord.toString();
+        } else {
+            return "";
+        }
     }
 
-    public void setDateOfRecord(LocalDate dateOfRecord) {
-        this.dateOfRecord = dateOfRecord;
+    public void setDateOfRecord(String dateOfRecord) {
+        LocalDate date = LocalDate.parse(dateOfRecord, DateTimeFormatter.ISO_LOCAL_DATE);
+        this.dateOfRecord = date;
     }
 
     public Group getGroup() {
