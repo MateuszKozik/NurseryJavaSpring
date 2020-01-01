@@ -8,7 +8,7 @@
     <body>
         <div layout:fragment="content" class="container mt-2">
             <form th:action="@{/parent/add}" method="POST" th:object="${parent}">
-               <div class="row">                 
+                <div class="row">                 
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">   
                             <label> Pesel </label>
@@ -16,7 +16,7 @@
                         </div>    
                     </div>    
                 </div>    
-                
+
                 <div class="row">                 
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">   
@@ -41,6 +41,44 @@
                             <label> Numer telefonu </label>
                             <input class=form-control type="tel"  pattern="[0-9]{3}[0-9]{3}[0-9]{3}" th:field="${parent.phoneNumber}" required />            
                         </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Adres </label>
+                            <select class="form-control" name="addresses">
+                                <option value="">Wybierz adres</option>
+                                <option th:each="address : ${addressList}"
+                                        th:if="${address.flatNumber != ''}"
+                                        th:value="${address.addressID}"
+                                        th:text="${address.street}+' '+${address.houseNumber}+'/'+
+                                        ${address.flatNumber}+', '+${address.postcode}+' '+${address.city}">
+                                </option>
+                                <option th:each="address : ${addressList}"
+                                        th:if="${address.flatNumber == ''}"
+                                        th:value="${address.addressID}"
+                                        th:text="${address.street}+' '+${address.houseNumber}
+                                        +', '+${address.postcode}+' '+${address.city}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Użytkownik </label>
+                            <select class="form-control" name="users">
+                                <option value="">Wybierz użytkownika</option>
+                                <option th:each="user : ${userList}"        
+                                        th:value="${user.email}"
+                                        th:text="${user.email}">
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
