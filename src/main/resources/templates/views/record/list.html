@@ -22,13 +22,17 @@
                     <thead class="thead-dark">
                         <tr  class="active">
                             <th>Data zapisu</th>
+                            <th>Dziecko</th>
+                            <th>Grupa</th>
                             <th>Akcje</th>
                         </tr>
 
                     </thead>
                     <tbody id="table">                       
                         <tr th:each ="record : ${recordList}">
-                            <td> <b  th:text="${record.dateOfRecord}">...</b> </td>  
+                            <td> <b  th:text="${record.dateOfRecord}">...</b> </td>
+                            <td> <b  th:if="${record.child}" th:text="${record.child.pesel}+' - '+${record.child.name}+' '+${record.child.surname}">...</b> </td>
+                            <td> <b  th:if="${record.group}" th:text="${record.group.groupDescription}">...</b> </td>
                             <td>
                                 <a class="btn btn-danger" th:href="'#modal'+ ${record.recordID}" data-toggle="modal">Usuń</a>
                                 <div class="modal fade" th:id="'modal'+ ${record.recordID}" tabindex="-1">
