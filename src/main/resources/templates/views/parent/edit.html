@@ -11,6 +11,15 @@
                 <div class="row">                 
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">   
+                            <label> Pesel </label>
+                            <input class="form-control" type="number" th:field="${parent.pesel}" required/>        
+                        </div>    
+                    </div>    
+                </div>
+                
+                <div class="row">                 
+                    <div class="col-md-4 offset-md-4 text-center">                         
+                        <div class="form-group">   
                             <label> Imię </label>
                             <input class="form-control" type="text" th:field="${parent.name}" required/>        
                         </div>    

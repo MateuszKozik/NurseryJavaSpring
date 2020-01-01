@@ -8,6 +8,15 @@
     <body>
         <div layout:fragment="content" class="container mt-2">
             <form th:action="@{/parent/add}" method="POST" th:object="${parent}">
+               <div class="row">                 
+                    <div class="col-md-4 offset-md-4 text-center">                         
+                        <div class="form-group">   
+                            <label> Pesel </label>
+                            <input class="form-control" type="number" th:field="${parent.pesel}" required/>        
+                        </div>    
+                    </div>    
+                </div>    
+                
                 <div class="row">                 
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">   
