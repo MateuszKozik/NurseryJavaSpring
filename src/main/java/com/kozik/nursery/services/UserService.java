@@ -33,4 +33,8 @@ public class UserService {
     public void delete(String email){
         userRepository.deleteById(email);
     }
+
+    public boolean isUserPresent(String email) {
+       return userRepository.existsById(email);
+    }
 }
