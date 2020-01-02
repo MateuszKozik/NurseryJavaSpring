@@ -29,6 +29,6 @@ public class AddressService {
     }
 
     public Address getByParent(long id) {
-        return addressRepository.findByParentParentID(id);
+        return addressRepository.findByParentsParentID(id);
     }
 }

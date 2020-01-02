@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <title>Profil</title>               
+    </head>
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-info alert-dismissible fade show" th:if="${updated}" role="alert">
+                        Profil zaktualizowany!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
+            </div>
+            
+            <form th:action="@{/customer/profile}" method="POST">
+                <div class="row">        
+                    <div class="col-md-4 offset-md-1 text-center">                         
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">    
+                                    <label> Imię </label>
+                                    <input class=form-control type="text" th:field="${parent.parentID}" hidden readonly required/>     
+                                    <input class=form-control type="text" th:field="${parent.name}" required/>           
+                                </div>
+                            </div>
+                        </div>  
+
+                        <div class="row"> 
+                            <div class="col-md-12">
+                                <div class="form-group">    
+                                    <label> Nazwisko </label>
+                                    <input class=form-control type="text" th:field="${parent.surname}" required/>          
+                                </div>  
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">  
+                                <div class="form-group">    
+                                    <label> Pesel </label>
+                                    <input class=form-control type="number" th:field="${parent.pesel}" required/>            
+                                </div> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">  
+                                <div class="form-group">    
+                                    <label> Numer telefonu </label>
+                                    <input class=form-control type="tel"  pattern="[0-9]{3}[0-9]{3}[0-9]{3}" th:field="${parent.phoneNumber}" required />            
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-2 text-center"> 
+                        <div class="row">                 
+                            <div class="col-md-12">                         
+                                <div class="form-group">   
+                                    <label> Ulica </label>
+                                    <input class="form-control" type="text" th:field="${address.addressID}" hidden readonly required/>
+                                    <input class="form-control" type="text" th:field="${address.street}" placeholder="Opcjonalne" />        
+                                </div>    
+                            </div>    
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Numer domu </label>
+                                    <input class=form-control type="number" min="1" th:field="${address.houseNumber}" required/>          
+                                </div>  
+                            </div>
+
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Numer mieszkania </label>
+                                    <input class=form-control type="number" min="1" th:field="${address.flatNumber}" placeholder="Opcjonalne">            
+                                </div> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Kod pocztowy </label>
+                                    <input class=form-control type="text" th:field="${address.postcode}" required/>            
+                                </div> 
+                            </div>
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Miejscowość </label>
+                                    <input class=form-control type="text" th:field="${address.city}" required/>            
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">  
+                        <button type="submit" class="btn btn-primary">Zapisz</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

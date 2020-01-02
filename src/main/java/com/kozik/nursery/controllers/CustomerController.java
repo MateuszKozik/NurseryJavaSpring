@@ -48,14 +48,15 @@ public class CustomerController {
 
     @PostMapping("/customer/profile")
     public String edit(@ModelAttribute("parent") Parent parent,
-            @ModelAttribute("address") Address address, Principal principal) {
+            @ModelAttribute("address") Address address, Principal principal,
+            Model model) {
         String email = principal.getName();
         parent.setUser(userService.get(email));
         addressService.save(address);
         parent.setAddress(address);
         parentService.save(parent);
-
-        return "redirect:/customer/profile";
+        model.addAttribute("updated", true);
+        return "views/customer/profile";
     }
 
 }
