@@ -67,6 +67,7 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">
                             <input class="form-control-lg form-control" type="password" id="retypedPassword" th:field="${user.retypedPassword}" placeholder="Powtórz hasło" required/>
+                            <div class="text text-danger" th:if="${#fields.hasErrors('retypedPassword')}" th:errors="${user.retypedPassword}"></div>
                         </div>  
                     </div>
                 </div>

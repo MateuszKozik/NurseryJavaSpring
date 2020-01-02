@@ -30,8 +30,8 @@ public class RegisterController {
     }
 
     @PostMapping(value = "/register")
-    public String register(@Valid User user, Model model,
-            BindingResult bindingResult) {
+    public String register(@Valid User user,
+            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "views/register";
         }

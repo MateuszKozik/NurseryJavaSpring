@@ -10,11 +10,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
 public class User {
     
+    @Email
+    @NotEmpty
     @Id
     @Column(name = "email", nullable = false, length = 35)
     private String email;
@@ -22,9 +27,13 @@ public class User {
     @Column(name = "userID", columnDefinition = "serial", insertable = false)
     private Integer userID;
 
+    @NotEmpty
+    @Size(min = 5)
     @Column(name = "password", nullable = false, length = 60)
     private String password;
     
+    @NotEmpty
+    @Size(min = 5)
     @Column(name = "retyped_password", nullable = false, length = 60)
     private String retypedPassword;
 
