@@ -26,4 +26,8 @@ public class FeeService {
     public void delete(long id){
         feeRepository.deleteById(id);
     }
+    
+    public Fee getLast(){
+        return feeRepository.findTopByOrderByUpdateDateDesc();
+    }
 }
