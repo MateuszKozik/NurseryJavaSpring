@@ -1,6 +1,7 @@
 package com.kozik.nursery.services;
 
 import com.kozik.nursery.entities.Child;
+import com.kozik.nursery.entities.Parent;
 import com.kozik.nursery.repositories.ChildRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,12 @@ public class ChildService {
     public void delete(String pesel){
         childRepository.deleteById(pesel);
     }
+    
+    public boolean isChildPresent(String pesel) {
+          return childRepository.existsByPesel(pesel);
+    }
+     
+    public List<Child> getByParent(Parent parent){
+        return childRepository.findByParents(parent);
+    } 
 }

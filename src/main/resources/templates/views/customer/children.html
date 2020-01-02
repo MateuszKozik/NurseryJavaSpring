@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <title>Dzieci</title>               
+    </head>
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <form th:action="@{/customer/children}" method="POST">
+                <div class="row">        
+                    <div class="col-md-4 offset-md-1 text-center">                         
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">    
+                                    <label> Pesel </label>
+                                    <input class=form-control type="text" name="pesel" id="pesel" required/>     
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">  
+                                <button type="submit" class="btn btn-primary">Dodaj</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 offset-md-1 text-center">
+                        <div class="table-responsive mt-2">
+                            <table class="table">          
+                                <thead>
+                                    <tr  class="active">
+                                        <th>Pesel</th>  
+                                        <th>Imię</th>  
+                                        <th>Nazwisko</th>     
+                                    </tr>
+
+                                </thead>
+                                <tbody id="table">                       
+                                    <tr th:each ="child : ${childList}">                                     
+                                        <td> <b  th:text="${child.pesel}">...</b> </td>
+                                        <td> <b  th:text="${child.name}">...</b> </td>
+                                        <td> <b  th:text="${child.surname}">...</b> </td>                                                                          
+                                    </tr>
+                                </tbody>          
+                            </table>    
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </body>
+</html>
