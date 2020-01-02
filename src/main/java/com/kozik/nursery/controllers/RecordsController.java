@@ -37,11 +37,24 @@ public class RecordsController {
         return "views/customer/record";
     }
     
-    @PostMapping(value = "/customer/record/add/{pesel}")
-    public String add(@PathVariable("pesel")String pesel,
-            @RequestParam("date")String date, Model model){
+    @PostMapping(value = "/customer/record/add")
+    public String add(@RequestParam("pesel")String pesel,
+            @RequestParam("date")String date){
         Child child = childService.get(pesel);
+        child.setSaved(true);
+        childService.save(child);
         recordService.saveByParent(child, date);
         return "redirect:/customer/record";
     }
+    
+    @GetMapping(value = "/customer/record/delete/{pesel}")
+    public String delete(@PathVariable("pesel")String pesel){
+        Child child = childService.get(pesel);
+        child.setSaved(false);
+        childService.save(child);
+        Record record = recordService.getByChild(pesel);
+        record.setGroup(null);
+        recordService.save(record);
+        return "redirect:/customer/record";
+    }           
 }

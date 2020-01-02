@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <script type="text/javascript" src="/js/search.js"></script>
+        <title>Zapisy</title>               
+    </head>
+
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <div class="table-responsive mt-2">
+                <table class="table">          
+                    <thead>
+                        <tr  class="active">
+                            <th>Pesel</th>  
+                            <th>Imię</th>  
+                            <th>Nazwisko</th>
+                            <th>Akcja</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="table">                       
+                        <tr th:each ="child : ${childList}">                                     
+                            <td> <b  th:text="${child.pesel}">...</b> </td>
+                            <td> <b  th:text="${child.name}">...</b> </td>
+                            <td> <b  th:text="${child.surname}">...</b> </td>  
+                            <td th:if="${child.saved} == false">                               
+                                <a class="btn btn-primary" th:href="'#modal'+${child.pesel}" data-toggle="modal">Zapisz</a>
+                                <div class="modal fade" th:id="'modal'+${child.pesel}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Zapisz</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form th:action="@{record/add}" method="POST">
+                                                <div class="modal-body">                            
+                                                    <label>Data zapisu</label>
+                                                    <input class="form-control" type="date" name="date" required/>
+                                                    <input name="pesel" th:value="${child.pesel}" hidden readonly required/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                                                    <button type="submit" class="btn btn-primary">Zapisz</button>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+

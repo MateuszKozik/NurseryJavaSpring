@@ -30,6 +30,9 @@ public class Child {
     @Column(name = "requirements_description", nullable = true, length = 60)
     private String requirementsDescription;
 
+    @Column(name = "saved", nullable = false)
+    private Boolean saved = false; 
+    
     @ManyToMany(mappedBy = "children")
     private Set<Parent> parents = new HashSet<Parent>();
     
@@ -99,6 +102,14 @@ public class Child {
 
     public void setRecords(Set<Record> records) {
         this.records = records;
+    }
+
+    public Boolean getSaved() {
+        return saved;
+    }
+
+    public void setSaved(Boolean saved) {
+        this.saved = saved;
     }
 
     @Override

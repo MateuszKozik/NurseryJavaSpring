@@ -39,4 +39,8 @@ public class RecordService {
         record.setFee(fee);
         recordRepository.save(record);
     }
+    
+    public Record getByChild(String pesel){
+        return recordRepository.findByChildPesel(pesel);
+    }
 }
