@@ -10,4 +10,5 @@ public interface ChildRepository extends JpaRepository<Child, String>{
 
     public boolean existsByPesel(String pesel);
     List<Child> findByParents(Parent parent);
+    List<Child> findByParentsAndEnrolled(Parent parent, Boolean enrolled);
 }

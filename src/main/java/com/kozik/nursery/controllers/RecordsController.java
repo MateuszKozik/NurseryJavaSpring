@@ -32,7 +32,7 @@ public class RecordsController {
     public String list(Model model, Principal principal){
         String email = principal.getName();
         Parent parent = parentService.getByEmail(email);
-        List<Child> childList = childService.getByParent(parent);
+        List<Child> childList = childService.getByParent(parent);      
         model.addAttribute("childList", childList);
         return "views/customer/record";
     }
@@ -52,9 +52,6 @@ public class RecordsController {
         Child child = childService.get(pesel);
         child.setEnrolled(false);
         childService.save(child);
-        Record record = recordService.getByChild(pesel);
-        record.setGroup(null);
-        recordService.save(record);
         return "redirect:/customer/record";
     }           
 }
