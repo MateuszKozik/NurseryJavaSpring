@@ -26,4 +26,12 @@ public class ParentService {
     public void delete(long id){
         parentRepository.deleteById(id);
     }
+
+    public boolean isParentPresent(String email) {
+          return parentRepository.existsByUserEmail(email);
+    }
+
+    public Parent getByEmail(String email) {
+        return parentRepository.findByUserEmail(email);
+    }
 }

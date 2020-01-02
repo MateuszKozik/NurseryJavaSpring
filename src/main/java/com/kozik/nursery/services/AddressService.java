@@ -27,4 +27,8 @@ public class AddressService {
     public void delete(long id){
        addressRepository.deleteById(id);
     }
+
+    public Address getByParent(long id) {
+        return addressRepository.findByParentParentID(id);
+    }
 }
