@@ -12,43 +12,43 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/"> Strona Główna </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/address/list"> Adresy </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/child/list"> Dzieci </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/employee/list"> Pracownicy </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/group/list"> Grupy </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/fee/list"> Opłaty </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/item/list"> Wyposażenie </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/parent/list"> Rodzice </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/record/list"> Zapisy </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/room/list"> Pomieszczenia </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/user/list"> Użytkownicy </a>
                 </li>
             </ul>
-            <form class="form-inline">
+            <form class="form-inline" sec:authorize="!isAuthenticated()">
                 <a href="/register" class="mr-2 btn btn-light" role="button">Rejestracja</a>
                 <a href="/login"  class="mr-2 btn btn-success" role="button">Logowanie</a> 
 
             </form>	
-            <form th:action="@{/logout}" method="POST" hidden>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
                 <button class="btn btn-success" type="submit" >Wyloguj</a>
             </form>
         </div>
