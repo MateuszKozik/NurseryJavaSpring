@@ -35,15 +35,23 @@ public class RegisterController {
         if (bindingResult.hasErrors()) {
             return "views/register";
         }
-        if (userService.isUserPresent(user.getEmail())) {
-            model.addAttribute("exist", true);
+
+        String password = user.getPassword();
+        String retyped = user.getRetypedPassword();
+        if (password.equals(retyped)) {
+            if (userService.isUserPresent(user.getEmail())) {
+                model.addAttribute("exist", true);
+                return "views/register";
+            }
+            Role role = roleService.getUser();
+            Set<Role> roles = new HashSet<Role>();
+            roles.add(role);
+            userService.save(user, roles);
+            model.addAttribute("success", true);
+            return "views/register";
+        } else {
+            model.addAttribute("passwordFailed", true);
             return "views/register";
         }
-        Role role = roleService.getUser();
-        Set<Role> roles = new HashSet<Role>();
-        roles.add(role);
-        userService.save(user, roles);
-        model.addAttribute("success", true);
-        return "views/register";
     }
 }
