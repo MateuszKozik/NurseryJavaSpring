@@ -7,6 +7,16 @@
     </head>
     <body>       
         <div layout:fragment="content" class="container mt-2">
+             <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-danger alert-dismissible fade show" th:if="${profile}" role="alert">
+                        Aby dodać dziecko musisz uzupełnić <a href="/customer/profile" class="alert-link">profil</a>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
+            </div>
             <form th:action="@{/customer/children}" method="POST">
                 <div class="row">        
                     <div class="col-md-4 offset-md-1 text-center">                         
