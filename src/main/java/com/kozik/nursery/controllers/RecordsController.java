@@ -41,7 +41,7 @@ public class RecordsController {
     public String add(@RequestParam("pesel")String pesel,
             @RequestParam("date")String date){
         Child child = childService.get(pesel);
-        child.setSaved(true);
+        child.setEnrolled(true);
         childService.save(child);
         recordService.saveByParent(child, date);
         return "redirect:/customer/record";
@@ -50,7 +50,7 @@ public class RecordsController {
     @GetMapping(value = "/customer/record/delete/{pesel}")
     public String delete(@PathVariable("pesel")String pesel){
         Child child = childService.get(pesel);
-        child.setSaved(false);
+        child.setEnrolled(false);
         childService.save(child);
         Record record = recordService.getByChild(pesel);
         record.setGroup(null);

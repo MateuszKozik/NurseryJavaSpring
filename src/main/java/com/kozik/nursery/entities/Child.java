@@ -30,8 +30,8 @@ public class Child {
     @Column(name = "requirements_description", nullable = true, length = 60)
     private String requirementsDescription;
 
-    @Column(name = "saved", nullable = false)
-    private Boolean saved = false; 
+    @Column(name = "enrolled", nullable = false)
+    private Boolean enrolled = false; 
     
     @ManyToMany(mappedBy = "children")
     private Set<Parent> parents = new HashSet<Parent>();
@@ -104,12 +104,12 @@ public class Child {
         this.records = records;
     }
 
-    public Boolean getSaved() {
-        return saved;
+    public Boolean getEnrolled() {
+        return enrolled;
     }
 
-    public void setSaved(Boolean saved) {
-        this.saved = saved;
+    public void setEnrolled(Boolean enrolled) {
+        this.enrolled = enrolled;
     }
 
     @Override
