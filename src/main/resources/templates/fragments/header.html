@@ -18,6 +18,9 @@
                 <li class="nav-item" sec:authorize="hasRole('ROLE_user')">
                     <a class="nav-link active" href="/customer/children"> Dzieci </a>
                 </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_user')">
+                    <a class="nav-link active" href="/customer/record"> Zapisy </a>
+                </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/address/list"> Adresy </a>
                 </li>
