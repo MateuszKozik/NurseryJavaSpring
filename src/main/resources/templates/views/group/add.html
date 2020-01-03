@@ -25,7 +25,7 @@
                                 <option selected value=""> Brak </option>
                                 <option th:each="employee : ${employeeList}"        
                                         th:value="${employee.employeeID}"
-                                        th:text="${employee.name}+' - '+${employee.surname}">
+                                        th:text="${employee.name}+' '+${employee.surname}">
                                 </option>
                             </select>       
                         </div>    
