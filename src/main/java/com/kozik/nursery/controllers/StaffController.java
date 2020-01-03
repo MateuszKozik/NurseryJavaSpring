@@ -2,11 +2,17 @@ package com.kozik.nursery.controllers;
 
 import com.kozik.nursery.entities.Employee;
 import com.kozik.nursery.entities.Address;
+import com.kozik.nursery.entities.Group;
 import com.kozik.nursery.entities.Parent;
+import com.kozik.nursery.entities.Record;
 import com.kozik.nursery.services.AddressService;
 import com.kozik.nursery.services.EmployeeService;
+import com.kozik.nursery.services.GroupService;
 import com.kozik.nursery.services.UserService;
 import java.security.Principal;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,43 +25,20 @@ public class StaffController {
     @Autowired
     private EmployeeService employeeService;
     @Autowired
-    private AddressService addressService;
+    private GroupService groupService;
     @Autowired
     private UserService userService;
     
-    @GetMapping(value = "/staff/profile")
-    public String profile(Model model, Principal principal){
+    @GetMapping(value = "/staff/list")
+    public String list(Model model, Principal principal){
         String email = principal.getName();
-        if (employeeService.isEmployeePresent(email)) {
-            Employee employee = employeeService.getByEmail(email);
-            model.addAttribute("employee", employee);
-            if (employee.getAddress() == null) {
-                Address address = new Address();
-                model.addAttribute("address", address);
-            } else {
-                Address address = addressService.getByEmployee(employee.getEmployeeID());
-                model.addAttribute("address", address);
-            }
-                    return "views/staff/profile";
-        } else {
-            Employee employee = new Employee();
-            Address address = new Address();
-            model.addAttribute("employee", employee);
-            model.addAttribute("address", address);
-            return "views/staff/profile";
+        Employee employee = employeeService.getByEmail(email);
+        List<Group> groupList = groupService.getByEmployee(employee);
+        Set<Record> recordList = new HashSet<Record>();
+        for(Group group: groupList){
+           recordList.addAll(group.getRecords());
         }
-    }
-    
-    @PostMapping("/staff/profile")
-    public String edit(@ModelAttribute("employee") Employee employee,
-            @ModelAttribute("address") Address address, Principal principal,
-            Model model) {
-        String email = principal.getName();
-        employee.setUser(userService.get(email));
-        addressService.save(address);
-        employee.setAddress(address);
-        employeeService.save(employee);
-        model.addAttribute("updated", true);
-        return "views/staff/profile";
+        model.addAttribute("recordList", recordList);
+        return "/views/staff/list";
     }
 }

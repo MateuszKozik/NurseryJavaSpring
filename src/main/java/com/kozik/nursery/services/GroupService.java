@@ -1,5 +1,6 @@
 package com.kozik.nursery.services;
 
+import com.kozik.nursery.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kozik.nursery.repositories.GroupRepository;
@@ -25,5 +26,9 @@ public class GroupService {
     
     public void delete(long id){
         groupRepository.deleteById(id);
+    }
+    
+    public List<Group> getByEmployee(Employee employee){
+        return groupRepository.findByEmployees(employee);
     }
 }
