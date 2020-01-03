@@ -43,4 +43,8 @@ public class RecordService {
     public Record getByChild(String pesel){
         return recordRepository.findByChildPesel(pesel);
     }
+    
+    public Record getByChildAndDate(Child child){
+        return recordRepository.findTopByChildOrderByDateOfRecordDesc(child);
+    }
 }
