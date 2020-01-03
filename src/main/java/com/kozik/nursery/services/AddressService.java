@@ -31,4 +31,8 @@ public class AddressService {
     public Address getByParent(long id) {
         return addressRepository.findByParentsParentID(id);
     }
+
+    public Address getByEmployee(long id) {
+        return addressRepository.findByEmployeesEmployeeID(id);
+    }
 }

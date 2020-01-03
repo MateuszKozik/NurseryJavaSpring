@@ -26,4 +26,12 @@ public class EmployeeService {
     public void delete(long id){
         employeeRepository.deleteById(id);
     }
+
+    public boolean isEmployeePresent(String email) {
+         return employeeRepository.existsByUserEmail(email);
+    }
+
+    public Employee getByEmail(String email) {
+        return employeeRepository.findByUserEmail(email);
+    }
 }
