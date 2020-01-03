@@ -28,7 +28,9 @@ public class RecordsController {
     private ChildService childService;
     @Autowired
     private RecordService recordService;
-
+    @Autowired
+    private FeeService feeService;
+    
     @GetMapping(value = "/customer/record")
     public String list(Model model, Principal principal) {
         String email = principal.getName();
@@ -41,8 +43,10 @@ public class RecordsController {
                 recordList.add(record);
             }
         }
+        Fee fee = feeService.getLast();
         model.addAttribute("recordList", recordList);
         model.addAttribute("childList", childList);
+        model.addAttribute("fee", fee);
         return "views/customer/record";
     }
 

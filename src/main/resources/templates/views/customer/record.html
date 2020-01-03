@@ -9,55 +9,82 @@
 
     <body>       
         <div layout:fragment="content" class="container mt-2">
-            <div class="table-responsive mt-2">
-                <table class="table">          
-                    <thead>
-                        <tr  class="active">
-                            <th>Pesel</th>  
-                            <th>Imię i Nazwisko</th>  
-                            <th>Akcja</th>
-                        </tr>
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <label class=display-4> Lista dzieci </label>
+                    <div class="table-responsive mt-2">
+                        <table class="table">          
+                            <thead>
+                                <tr  class="active">
+                                    <th>Pesel</th>  
+                                    <th>Imię i Nazwisko</th>  
+                                    <th>Akcja</th>
+                                </tr>
 
-                    </thead>
-                    <tbody id="table">                       
-                        <tr th:each ="child : ${childList}">                                     
-                            <td> <b  th:text="${child.pesel}">...</b> </td>
-                            <td> <b  th:text="${child.name}+' '+${child.surname}">...</b> </td> 
-                            <td th:if="${child.enrolled} == false">                               
-                                <a class="btn btn-success" th:href="'#modal'+${child.pesel}" data-toggle="modal">Zapisz</a>
-                                <div class="modal fade" th:id="'modal'+${child.pesel}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Zapisz</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form th:action="@{record/add}" method="POST">
-                                                <div class="modal-body">                            
-                                                    <label>Data zapisu</label>
-                                                    <input class="form-control" type="date" name="date" required/>
-                                                    <input name="pesel" th:value="${child.pesel}" hidden readonly required/>
+                            </thead>
+                            <tbody id="table">                       
+                                <tr th:each ="child : ${childList}">                                     
+                                    <td> <b  th:text="${child.pesel}">...</b> </td>
+                                    <td> <b  th:text="${child.name}+' '+${child.surname}">...</b> </td> 
+                                    <td th:if="${child.enrolled} == false">                               
+                                        <a class="btn btn-primary" th:href="'#modal'+${child.pesel}" data-toggle="modal">Zapisz</a>
+                                        <div class="modal fade" th:id="'modal'+${child.pesel}" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Zapisz</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form th:action="@{record/add}" method="POST">
+                                                        <div class="modal-body">                            
+                                                            <label>Data zapisu</label>
+                                                            <input class="form-control" type="date" name="date" required/>
+                                                            <input name="pesel" th:value="${child.pesel}" hidden readonly required/>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                                                            <button type="submit" class="btn btn-primary">Zapisz</button>
+                                                        </div> 
+                                                    </form>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                                                    <button type="submit" class="btn btn-primary">Zapisz</button>
-                                                </div> 
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td th:if="${child.enrolled} == true">
-                                <b> Zapisany </b>
-                            </td>
-                        </tr>
-                    </tbody>          
-                </table>    
-            </div> 
+                                    </td>
+                                    <td th:if="${child.enrolled} == true">
+                                        <b class="btn btn-success"> Zapisany </b>
+                                    </td>
+                                </tr>
+                            </tbody>          
+                        </table>    
+                    </div> 
+                </div>
 
-            <div class="table-responsive mt-2">
+                <div class="col-md-6">
+                    <label class=display-4> Cena zapisu</label>
+                    <div class="row mt-2 text-left">
+                        <div class="col-md-12">        
+                            <label class="font-weight-bold">Data aktualizacji: </label>                             
+                            <p th:text="${fee.updateDate}"></b>                    
+                        </div>
+                        <div class="col-md-12">
+                            <label class="font-weight-bold">Czesne: </label>                             
+                            <p th:text="${#numbers.formatCurrency(fee.tuition)}"></b> 
+                        </div>
+                        <div class="col-md-12">
+                            <label class="font-weight-bold">Posiłki: </label>                             
+                            <p th:text="${#numbers.formatCurrency(fee.meals)}"></b>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-10 offset-md-1">
+                <label class=display-4> Zapisane </label>
+                   <div class="table-responsive mt-2">
                 <table class="table">          
                     <thead>
                         <tr  class="active">
@@ -84,7 +111,11 @@
                     </tr>
                     </tbody>          
                 </table>  
+            </div> 
+                    
+                </div>
             </div>
+            
         </div> 
 
     </body>
