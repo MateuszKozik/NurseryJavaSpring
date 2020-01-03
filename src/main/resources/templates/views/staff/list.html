@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <script type="text/javascript" src="/js/search.js"></script>
+        <title>Lista dzieci</title>               
+    </head>
+
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <div class="row">
+                <div class="col-md-4 offset-md-4 my-1">
+                    <input type="search"  placeholder="Szukaj..." class="form-control search-input border-info" id="search"/>
+                </div>
+            </div>
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Pesel</th>
+                            <th>Dziecko</th>
+                            <th>Rodzice</th>
+                            <th>Grupa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table">                       
+                        <tr th:each ="record : ${recordList}">  
+                            <td> <b th:text="${record.child.pesel}">...</b></td>
+                            <td> <b  th:text="${record.child.name}+' '+${record.child.surname}">...</b> </td>
+                            <td>
+                                <div th:each="parent : ${record.child.parents}">
+                                    <b th:text="${parent.name}+' '+${parent.surname}+', tel: '+${parent.phoneNumber}"></b> 
+                                </div>
+                            </td>
+                            <td> <b  th:text="${record.group.groupDescription}">...</b> </td>
+                                  
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+
