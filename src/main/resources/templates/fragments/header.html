@@ -24,6 +24,9 @@
                 <li class="nav-item" sec:authorize="hasRole('ROLE_pracownik')">
                     <a class="nav-link active" href="/staff/list"> Lista dzieci </a>
                 </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_pracownik')">
+                    <a class="nav-link active" href="/staff/record"> Lista zapisów </a>
+                </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/address/list"> Adresy </a>
                 </li>
