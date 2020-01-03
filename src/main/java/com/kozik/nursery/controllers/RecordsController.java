@@ -9,6 +9,7 @@ import com.kozik.nursery.services.FeeService;
 import com.kozik.nursery.services.ParentService;
 import com.kozik.nursery.services.RecordService;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class RecordsController {
     private RecordService recordService;
     @Autowired
     private FeeService feeService;
-    
+
     @GetMapping(value = "/customer/record")
     public String list(Model model, Principal principal) {
         String email = principal.getName();
@@ -61,9 +62,17 @@ public class RecordsController {
     }
 
     @GetMapping(value = "/customer/record/delete/{id}")
-    public String delete(@PathVariable("id")long id) {
+    public String delete(@PathVariable("id") long id,
+            Model model) {
         Record record = recordService.get(id);
         Child child = record.getChild();
+        LocalDate dateNow = LocalDate.now();
+        LocalDate dateAssign = LocalDate.parse(record.getDateOfRecord());
+
+        if (dateNow.isBefore(dateAssign)) {
+            return "redirect:/customer/record";
+        }
+
         child.setEnrolled(false);
         record.setGroup(null);
         recordService.save(record);
