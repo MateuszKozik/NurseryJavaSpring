@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GroupRepository extends JpaRepository<Group, Long>{
     List<Group> findByEmployees(Employee employee);
+    Group findByGroupDescription(String description);
 }

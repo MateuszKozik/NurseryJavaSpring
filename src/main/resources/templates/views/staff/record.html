@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <script type="text/javascript" src="/js/search.js"></script>
+        <title>Lista zapisów</title>               
+    </head>
+
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Data zapisu</th>
+                            <th>Dziecko</th>
+                            <th>Grupa</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="table">                       
+                        <tr th:each ="record : ${recordList}">
+                            <td> <b  th:text="${record.dateOfRecord}">...</b> </td>
+                            <td> <b  th:if="${record.child}" th:text="${record.child.pesel}+' - '+${record.child.name}+' '+${record.child.surname}">...</b> </td>
+                            <td> 
+                                <a class="btn btn-primary" th:href="'#modal'+${record.recordID}" data-toggle="modal">Przypisz</a>
+                                <div class="modal fade" th:id="'modal'+${record.recordID}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Zapisz</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form th:action="@{record/asign}" method="POST">
+                                                <div class="modal-body">                            
+                                                    <label>Grupa</label>
+                                                    <select class="form-control" name="group">
+                                                        <option value="">Wybierz grupę</option>
+                                                        <option th:each="group : ${groupList}"        
+                                                                th:value="${group.groupID}"
+                                                                th:text="${group.groupDescription}">
+                                                        </option>
+                                                    </select>
+                                                    <input name="record" th:value="${record.recordID}" hidden readonly required/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                                                    <button type="submit" class="btn btn-primary">Zapisz</button>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+

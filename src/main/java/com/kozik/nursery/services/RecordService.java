@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kozik.nursery.repositories.RecordRepository;
 import com.kozik.nursery.entities.Record;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -46,5 +47,10 @@ public class RecordService {
     
     public Record getByChildAndDate(Child child){
         return recordRepository.findTopByChildOrderByDateOfRecordDesc(child);
+    }
+    
+    public List<Record> getByGroupNull(){
+        LocalDate date = LocalDate.now();
+        return recordRepository.findByGroupNullAndDateOfRecordGreaterThan(date);
     }
 }

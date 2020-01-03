@@ -31,4 +31,8 @@ public class GroupService {
     public List<Group> getByEmployee(Employee employee){
         return groupRepository.findByEmployees(employee);
     }
+    
+    public Group getByDescription(String description){
+        return groupRepository.findByGroupDescription(description);
+    }
 }
