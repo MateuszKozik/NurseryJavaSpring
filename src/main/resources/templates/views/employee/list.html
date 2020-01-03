@@ -22,10 +22,10 @@
                     <thead class="thead-dark">
                         <tr  class="active">
                             <th>Data zatrudnienia</th>
-                            <th>Imię</th>  
-                            <th>Nazwisko</th>  
+                            <th>Imię i nazwisko</th>                              
                             <th>Numer telefonu</th>
                             <th>Stanowisko</th>
+                            <th>Przełożony</th>
                             <th>Płaca podstawowa</th>  
                             <th>Płaca dodatkowa</th>
                             <th>Akcje</th>
@@ -35,10 +35,13 @@
                     <tbody id="table">                       
                         <tr th:each ="employee : ${employeeList}">                                     
                             <td> <b  th:text="${employee.dateOfEmployment}">...</b> </td>
-                            <td> <b  th:text="${employee.name}">...</b> </td>
-                            <td> <b  th:text="${employee.surname}">...</b> </td>
+                            <td> <b  th:text="${employee.name}+' '+${employee.surname}">...</b> </td>
                             <td> <b  th:text="${employee.phoneNumber}">...</b> </td>
                             <td> <b  th:text="${employee.position}">...</b> 
+                            <td>
+                                <b th:if="${employee.supervisor}" th:text="${employee.supervisor.name}+' '+${employee.supervisor.surname}"></b>
+                                <b th:unless="${employee.supervisor}"></b>
+                            </td>    
                             <td> <b  th:text="${#numbers.formatCurrency(employee.baseSalary)}">...</b> </td>
                             <td> <b  th:text="${#numbers.formatCurrency(employee.extraPay)}">...</b> </td>   
                             <td>
