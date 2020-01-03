@@ -83,41 +83,38 @@
 
             <div class="row text-center">
                 <div class="col-md-10 offset-md-1">
-                <label class=display-4> Zapisane </label>
-                   <div class="table-responsive mt-2">
-                <table class="table">          
-                    <thead>
-                        <tr  class="active">
-                            <th>Pesel</th>
-                            <th>Imię i nazwisko</th>                        
-                            <th>Grupa</th>
-                            <th>Opiekunowie</th>
-                            <th>Akcja</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table">                       
-                        <tr th:each ="record : ${recordList}">
-                    <div th:if="${record.group}"> 
-                        <td> <b th:text="${record.child.pesel}">...</b> </td>
-                        <td> <b th:text="${record.child.name}+' '+${record.child.surname}">...</b> </td> 
-                        <td> <b th:text="${record.group.groupDescription}"></b></td>
-                        <td>            
-                            <div th:each="employee : ${record.group.employees}">
-                                <b th:text="${employee.name}+' '+${employee.surname}+', tel: '+${employee.phoneNumber} "></b>
-                            </div>          
-                        </td>
-                        <td><a class="btn btn-danger" th:href="@{'record/delete/' + ${record.recordID}}">Wypisz</a></td>
-                    </div>
-                    </tr>
-                    </tbody>          
-                </table>  
-            </div> 
-                    
+                    <label class=display-4> Zapisane </label>
+                    <div class="table-responsive mt-2">
+                        <table class="table">          
+                            <thead>
+                                <tr  class="active">
+                                    <th>Pesel</th>
+                                    <th>Imię i nazwisko</th>                        
+                                    <th>Grupa</th>
+                                    <th>Opiekunowie</th>
+                                    <th>Akcja</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table">                       
+                                <tr th:each ="record : ${recordList}">
+                            <div th:if="${record.group}"> 
+                                <td> <b th:text="${record.child.pesel}">...</b> </td>
+                                <td> <b th:text="${record.child.name}+' '+${record.child.surname}">...</b> </td> 
+                                <td> <b th:text="${record.group.groupDescription}"></b></td>
+                                <td>            
+                                    <div th:each="employee : ${record.group.employees}">
+                                        <b th:text="${employee.name}+' '+${employee.surname}+', tel: '+${employee.phoneNumber} "></b>
+                                    </div>          
+                                </td>
+                                <td><a class="btn btn-danger" th:href="@{'record/delete/' + ${record.recordID}}">Wypisz</a></td>
+                            </div>
+                            </tr>
+                            </tbody>          
+                        </table>  
+                    </div> 
                 </div>
             </div>
-            
         </div> 
-
     </body>
 </html>
 
