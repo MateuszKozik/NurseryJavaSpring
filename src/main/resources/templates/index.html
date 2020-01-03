@@ -10,22 +10,19 @@
             <div class="row">
                 <div class="col-md-6 text-center">
                     <label class=display-4> Oferta</label>
-                    <div class="row mt-2"> 
+                    <div class="row"> 
                         <p class="lead text-justify"> Do żłobków przyjmowane są dzieci w wieku od 20 tygodnia życia do trzech lat, 
                             które nie mają zapewnionej opieki domowej w godzinach pracy lub nauki rodziców lub opiekunów, 
                             albo w przypadku niepełnosprawności tych osób </p>
-                        <div class="col-md-12">
-                            <label class="display-4"> Cena</label>
                         </div>
-                        <div class="col-md-12">                           
-                            <label class="font-weight-bold">Czesne: </label>                             
-                            <p class="lead" th:text="${#numbers.formatCurrency(fee.tuition)}"></b> 
-                        </div>
-                        <div class="col-md-12">
-                            <label class="font-weight-bold">Posiłki: </label>                             
-                            <p class=lead th:text="${#numbers.formatCurrency(fee.meals)}"></b>
-                        </div>
-                    </div>
+                    <div class="rwo">
+                        <label class=display-4> Nasze priorytety</label>
+                        <ul class="lead text-left">
+                            <li>Zapewnienie dzieciom bezpieczeństwa i stworzenie jak najbardziej domowych warunków.</li>
+                            <li>Zapewnienie opieki wychowawczej i pielęgniarskiej w postaci kadry z najlepszymi kwalifikacjami.</li>
+                            <li>Indywidualne podejście do każdego dziecka wspomagając jego rozwój.</li>                       
+                        </ul>  
+                    </div>               
                 </div>
                 <div class="col-md-6">
                     <h1 class="display-4 text-center">Aktualności</h1>

@@ -9,14 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
-    @Autowired
-    private FeeService feeService;
-    
     @GetMapping(value = "/")
     public String showHomePage(Model model){
-         Fee fee = feeService.getLast();
-    
-        model.addAttribute("fee", fee);
         return "/index";
     }
 }
