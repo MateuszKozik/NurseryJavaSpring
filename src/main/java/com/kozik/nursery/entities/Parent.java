@@ -45,7 +45,7 @@ public class Parent {
     
     @ManyToMany
     @JoinTable(
-            name = "parents_childrens",
+            name = "parents_children",
             joinColumns = @JoinColumn(name = "parentID", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "pesel", nullable = false))
     private Set<Child> children = new HashSet<Child>();
